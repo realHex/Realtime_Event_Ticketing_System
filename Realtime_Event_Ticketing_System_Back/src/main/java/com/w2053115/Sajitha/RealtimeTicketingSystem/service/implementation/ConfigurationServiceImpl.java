@@ -14,7 +14,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
     @Getter
     private Configuration loadedConfig;
     private final ObjectMapper mapper = new ObjectMapper();
-    private final String filePath = "resources/configuration.json";
+    private final String filePath = "src/main/java/com/w2053115/Sajitha/RealtimeTicketingSystem/configuration/configuration.json";
 
 
     @Override
@@ -23,11 +23,13 @@ public class ConfigurationServiceImpl implements ConfigurationService {
             File file = new File(filePath);
             if (!file.exists()) {
                 //logger. File doesn't exist
+                System.out.println("File doesn't exist");
             }
             return mapper.readValue(file,Configuration.class);
         }
         catch (Exception e) {
             //logger = "Error reading configuration file."
+            System.out.println("Runtime exception in load config catch block");
             throw new RuntimeException();
         }
     }

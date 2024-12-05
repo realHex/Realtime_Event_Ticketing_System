@@ -4,14 +4,14 @@ import com.w2053115.Sajitha.RealtimeTicketingSystem.service.TicketPool;
 import lombok.Data;
 
 @Data
-public class VendorRunService implements Runnable{
+public class VendorRunner implements Runnable{
     private final int vendorId;
     private final int ticketsPerRelease;
     private final int releaseInterval;
     static int vendorNo = 1;
     private final TicketPool ticketPool;
 
-    public VendorRunService (int ticketsPerRelease, int releaseInterval, TicketPool ticketPool) {
+    public VendorRunner(int ticketsPerRelease, int releaseInterval, TicketPool ticketPool) {
         this.vendorId = vendorNo++;
         this.ticketsPerRelease = ticketsPerRelease;
         this.releaseInterval = releaseInterval;

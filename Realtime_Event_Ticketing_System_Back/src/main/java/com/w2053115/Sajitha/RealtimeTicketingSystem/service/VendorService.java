@@ -6,4 +6,6 @@ import org.springframework.stereotype.Service;
 public interface VendorService {
     public String createVendor();
 
+    public String removeVendor();
+
 }

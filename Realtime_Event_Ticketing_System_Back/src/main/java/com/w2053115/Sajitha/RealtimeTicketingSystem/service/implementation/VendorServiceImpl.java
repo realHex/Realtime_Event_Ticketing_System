@@ -4,10 +4,9 @@ import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Configuration;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Vendor;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.repositary.VendorRepo;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.ConfigurationService;
-import com.w2053115.Sajitha.RealtimeTicketingSystem.service.SystemService;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.TicketPool;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.VendorService;
-import com.w2053115.Sajitha.RealtimeTicketingSystem.service.runnables.VendorRunService;
+import com.w2053115.Sajitha.RealtimeTicketingSystem.service.runnables.VendorRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +44,7 @@ public class VendorServiceImpl implements VendorService {
         vendorRepo.save(vendor);
 
         //Create vendor object (for making the thread)
-        VendorRunService vendorObject = new VendorRunService(
+        VendorRunner vendorObject = new VendorRunner(
                 configuration.getTicketReleaseRate(),
                 1,
                 ticketPool
@@ -58,5 +57,9 @@ public class VendorServiceImpl implements VendorService {
             vendorThread.start();
         }
         return "Vendor " + vendorObject.getVendorId() + " created successfully";
+    }
+
+    public String removeVendor(){
+        return null;
     }
 }
