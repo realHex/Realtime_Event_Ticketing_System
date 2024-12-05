@@ -1,10 +1,13 @@
 package com.w2053115.Sajitha.RealtimeTicketingSystem.service;
 
-import com.w2053115.Sajitha.RealtimeTicketingSystem.dto.request.ConfigurationSaveRequestDTO;
+import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Configuration;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface ConfigurationService {
 
-    String saveConfiguration(ConfigurationSaveRequestDTO saveRequestDTO);
+    Configuration loadConfiguration();
+    void saveConfiguration(Configuration configuration);
+
+
 }

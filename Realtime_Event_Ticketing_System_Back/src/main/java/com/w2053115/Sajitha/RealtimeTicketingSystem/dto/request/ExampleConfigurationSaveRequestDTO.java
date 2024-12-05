@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ConfigurationSaveRequestDTO {
-
+public class ExampleConfigurationSaveRequestDTO {
     private int totalTickets;
     private int ticketReleaseRate;
     private int customerRetrievalRate;
