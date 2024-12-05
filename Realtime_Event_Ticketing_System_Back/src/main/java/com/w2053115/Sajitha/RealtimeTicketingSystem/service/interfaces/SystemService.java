@@ -1,4 +1,4 @@
-package com.w2053115.Sajitha.RealtimeTicketingSystem.service;
+package com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces;
 
 import org.springframework.stereotype.Service;
 
@@ -12,4 +12,6 @@ public interface SystemService {
     String stopApplication();
 
     String resetApplication();
+
+    public boolean getStart();
 }

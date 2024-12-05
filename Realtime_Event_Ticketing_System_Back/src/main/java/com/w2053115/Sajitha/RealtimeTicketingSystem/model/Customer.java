@@ -1,7 +1,5 @@
 package com.w2053115.Sajitha.RealtimeTicketingSystem.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,22 +12,23 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Vendor {
+public class Customer {
     @Id
-    private String vendorId; //Automatically generated an objectId by MongoDB
-    private int ticketsPerRelease;
+    private String customerId;
+    private int ticketsPerRetrieval;
     private int releaseInterval;
 
-    //Simulating real world date, in case needed to add
     private String name;
     private String contactNo;
+    private int priority;
     private LocalDateTime created;
 
-    public Vendor(int ticketsPerRelease, int releaseInterval, String name, String contactNo) {
-        this.ticketsPerRelease = ticketsPerRelease;
+    public Customer(int ticketsPerRetrieval, int releaseInterval, String name, String contactNo, int priority) {
+        this.ticketsPerRetrieval = ticketsPerRetrieval;
         this.releaseInterval = releaseInterval;
         this.name = name;
         this.contactNo = contactNo;
+        this.priority = priority;
         this.created = LocalDateTime.now();
     }
 }

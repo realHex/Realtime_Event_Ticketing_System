@@ -1,7 +1,7 @@
 package com.w2053115.Sajitha.RealtimeTicketingSystem.controller;
 
 import com.w2053115.Sajitha.RealtimeTicketingSystem.dto.request.ExampleConfigurationSaveRequestDTO;
-import com.w2053115.Sajitha.RealtimeTicketingSystem.service.ExampleConfigurationService;
+import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.ExampleConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

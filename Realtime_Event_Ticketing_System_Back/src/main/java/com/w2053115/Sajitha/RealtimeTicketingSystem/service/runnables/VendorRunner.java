@@ -27,7 +27,7 @@ public class VendorRunner implements Runnable{
             }
         }
         catch (InterruptedException e){
-            //Log.log("WARNING", "Vendor " + vendorId + " encountered error error in thread.");
+            //Log.log("WARNING", "Vendor " + vendorId + " encountered error in thread.");
         }
     }
 }

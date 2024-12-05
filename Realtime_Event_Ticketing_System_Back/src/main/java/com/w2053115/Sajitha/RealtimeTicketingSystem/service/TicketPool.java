@@ -1,9 +1,7 @@
 package com.w2053115.Sajitha.RealtimeTicketingSystem.service;
 
 
-import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Configuration;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Ticket;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
