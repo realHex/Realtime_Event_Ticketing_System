@@ -7,7 +7,7 @@ import com.w2053115.Sajitha.RealtimeTicketingSystem.service.TicketPool;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.ConfigurationService;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.CustomerService;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.SystemService;
-import com.w2053115.Sajitha.RealtimeTicketingSystem.service.runnables.CustomerRunner;
+import com.w2053115.Sajitha.RealtimeTicketingSystem.service.runnable.CustomerRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

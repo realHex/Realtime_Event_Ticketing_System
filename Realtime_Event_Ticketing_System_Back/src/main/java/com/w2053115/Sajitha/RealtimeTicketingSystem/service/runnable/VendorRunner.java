@@ -1,4 +1,4 @@
-package com.w2053115.Sajitha.RealtimeTicketingSystem.service.runnables;
+package com.w2053115.Sajitha.RealtimeTicketingSystem.service.runnable;
 
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.TicketPool;
 import lombok.Data;
