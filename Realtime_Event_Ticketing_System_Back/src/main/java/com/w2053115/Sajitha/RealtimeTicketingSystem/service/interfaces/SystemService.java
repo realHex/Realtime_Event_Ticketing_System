@@ -13,5 +13,4 @@ public interface SystemService {
 
     String resetApplication();
 
-    public boolean getStart();
 }

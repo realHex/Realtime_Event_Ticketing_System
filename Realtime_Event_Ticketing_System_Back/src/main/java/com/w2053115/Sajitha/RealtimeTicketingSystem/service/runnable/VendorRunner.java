@@ -10,6 +10,7 @@ public class VendorRunner implements Runnable{
     private final int releaseInterval;
     static int vendorNo = 1;
     private final TicketPool ticketPool;
+    private volatile boolean started = true;
 
     public VendorRunner(int ticketsPerRelease, int releaseInterval, TicketPool ticketPool) {
         this.vendorId = vendorNo++;
@@ -21,7 +22,7 @@ public class VendorRunner implements Runnable{
     @Override
     public void run() {
         try {
-            while (!Thread.currentThread().isInterrupted()) {
+            while (started) {
                 ticketPool.addTicket(vendorId, ticketsPerRelease);
                 Thread.sleep(releaseInterval * 1000L);
             }
@@ -29,5 +30,9 @@ public class VendorRunner implements Runnable{
         catch (InterruptedException e){
             //Log.log("WARNING", "Vendor " + vendorId + " encountered error in thread.");
         }
+    }
+
+    public void stop() {
+        this.started = false;
     }
 }

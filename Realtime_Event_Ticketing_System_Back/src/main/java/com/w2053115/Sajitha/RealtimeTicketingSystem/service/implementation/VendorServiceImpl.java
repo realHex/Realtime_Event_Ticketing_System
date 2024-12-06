@@ -2,10 +2,9 @@ package com.w2053115.Sajitha.RealtimeTicketingSystem.service.implementation;
 
 import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Configuration;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Vendor;
-import com.w2053115.Sajitha.RealtimeTicketingSystem.repositary.VendorRepo;
-import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.ConfigurationService;
+import com.w2053115.Sajitha.RealtimeTicketingSystem.repository.VendorRepo;
+import com.w2053115.Sajitha.RealtimeTicketingSystem.service.SystemState;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.TicketPool;
-import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.SystemService;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.VendorService;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.runnable.VendorRunner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +17,19 @@ public class VendorServiceImpl implements VendorService {
 
     private final ArrayList<Thread> vendorThreadList = new ArrayList<>();
     private final ArrayList<VendorRunner> vendorObjectList = new ArrayList<>();
+    private int noOfVendors = 0;
 
     @Autowired
     private VendorRepo vendorRepo;
 
     @Autowired
-    ConfigurationService configurationService;
-
-    @Autowired
     private TicketPool ticketPool;
 
     @Autowired
-    private SystemService systemService;
+    Configuration configuration;
 
     @Override
     public String createVendor() {
-        //Load the configuration parameters into an object
-        Configuration configuration = configurationService.loadConfiguration();
 
         //Add vendor details to the database
         Vendor vendor = new Vendor(
@@ -44,6 +39,10 @@ public class VendorServiceImpl implements VendorService {
                 "0774950215"
         );
         vendorRepo.save(vendor);
+        System.out.println(configuration.getTotalTickets());
+        System.out.println(configuration.getTicketReleaseRate());
+        System.out.println(configuration.getCustomerRetrievalRate());
+        System.out.println(configuration.getMaxTicketCapacity());
 
 
         //Create vendor object (for making the thread)
@@ -57,15 +56,17 @@ public class VendorServiceImpl implements VendorService {
         //Creating vendor threads and storing it for accessing
         Thread vendorThread = new Thread(vendorObject);
         vendorThreadList.add(vendorThread);
-        if (systemService.getStart()) {
+        if (SystemState.getState()==SystemState.RUNNING) {
             vendorThread.start();
         }
         for (Thread x : vendorThreadList) {
             System.out.println(x.getName());
         }
+        noOfVendors++;
         return "Vendor " + vendorObject.getVendorId() + " created successfully";
     }
 
+    @Override
     public String removeVendor(){
         try {
             if (vendorRepo!=null && !vendorObjectList.isEmpty() && !vendorThreadList.isEmpty()) {
@@ -74,6 +75,7 @@ public class VendorServiceImpl implements VendorService {
                 vendorRepo.delete(vendorRepo.findFirstByOrderByCreatedDesc());
 
                 //Delete vendor object and thread
+                vendorThreadList.getLast().interrupt();
                 vendorObjectList.removeLast();
                 vendorThreadList.removeLast();
 
@@ -82,6 +84,7 @@ public class VendorServiceImpl implements VendorService {
                 for (Thread x : vendorThreadList) {
                     System.out.println(x.getName());
                 }
+                noOfVendors--;
                 return "Vendor " + vendorId + " Removed";
             }
             else {
@@ -95,20 +98,38 @@ public class VendorServiceImpl implements VendorService {
         }
     }
 
+    @Override
     public void startVendors(){
         for (Thread thread : vendorThreadList) {
             thread.start();
         }
+        System.out.println("Vendors started");
     }
 
+    @Override
     public void stopVendors(){
-        try {
-            for (Thread thread : vendorThreadList) {
-                thread.wait();
-            }
-        } catch (InterruptedException e) {
-            System.out.println("Error while stopping vendor threads");
+        for (VendorRunner vendorRunner : vendorObjectList) {
+            vendorRunner.stop();
         }
+        System.out.println("Vendors stopped");
+    }
+
+    @Override
+    public void resetVendors(){
+        if (!vendorObjectList.isEmpty() && !vendorThreadList.isEmpty()){
+            for (Thread thread : vendorThreadList) {
+                thread.interrupt();
+            }
+            vendorObjectList.clear();
+            vendorThreadList.clear();
+        }
+        noOfVendors = 0;
+        System.out.println("Vendors reset");
+    }
+
+    @Override
+    public int getVendors() {
+        return noOfVendors;
     }
 
 }

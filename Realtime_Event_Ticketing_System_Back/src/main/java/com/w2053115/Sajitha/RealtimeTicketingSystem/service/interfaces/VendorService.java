@@ -8,5 +8,6 @@ public interface VendorService {
     public String removeVendor();
     public void startVendors();
     public void stopVendors();
-
+    public void resetVendors();
+    public int getVendors();
 }

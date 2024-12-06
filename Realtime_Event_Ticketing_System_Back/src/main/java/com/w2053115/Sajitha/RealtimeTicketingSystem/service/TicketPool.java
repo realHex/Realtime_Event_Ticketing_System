@@ -25,7 +25,7 @@ public class TicketPool {
     private int totalSoldTickets;
 
 
-    public void ticketpoolInitializer(int totalTickets, int maxTicketCapacity) {
+    public void initializeTicketpool(int totalTickets, int maxTicketCapacity) {
         this.totalTickets = totalTickets;
         this.maxTicketCapacity = maxTicketCapacity;
 
@@ -38,6 +38,13 @@ public class TicketPool {
         totalSoldTickets = 0;
 
     }
+    public void resetTicketpool(){
+        ticketPool.clear();
+        totalTickets = 0;
+        maxTicketCapacity = 0;
+        totalAddedTickets = 0;
+        totalSoldTickets = 0;
+    }
 
     public void addTicket (int vendorId, int noOfTickets) {
         lock.lock();
@@ -45,6 +52,7 @@ public class TicketPool {
             //Checking if the number of tickets exceeds ticket capacity
             while(totalTickets + noOfTickets > maxTicketCapacity) {
                 //Log.log("INFO",System.currentTimeMillis() + " " + "Vendor " + vendorId + " is waiting for tickets to be purchased. Total tickets : " + totalTickets);
+                System.out.println(System.currentTimeMillis() + " " + "Vendor " + vendorId + " is waiting for tickets to be purchased. Total tickets : " + totalTickets);
                 ticketsRemoved.await(); //Pausing the thread until there's space
             }
             //Adding tickets to the list
@@ -54,10 +62,12 @@ public class TicketPool {
             }
             totalTickets += noOfTickets;
             totalAddedTickets += 1;
+            System.out.println(System.currentTimeMillis() + " " + "Vendor " + vendorId + " added " + noOfTickets + " tickets. Total tickets : " + totalTickets);
             //Log.log("INFO", System.currentTimeMillis() + " " + "Vendor " + vendorId + " added " + noOfTickets + " tickets. Total tickets : " + totalTickets);
             ticketsAdded.signalAll(); //Notifying customer threads
         }
         catch (InterruptedException e) {
+            System.out.println("Vendor " + vendorId + " encountered error while adding ticket");
             //Log.log("WARNING", "Vendor " + vendorId + " encountered error while adding ticket");
         }
         finally {
@@ -69,6 +79,7 @@ public class TicketPool {
         try {
             //Checking if there are enough tickets to purchase
             while (totalTickets - noOfTickets < 0) {
+                System.out.println(System.currentTimeMillis() + " " + "Customer " + customerId + " is waiting for tickets to be added. Total tickets : " + totalTickets);
                 //Log.log("INFO", System.currentTimeMillis() + " " + "Customer " + customerId + " is waiting for tickets to be added. Total tickets : " + totalTickets);
                 ticketsAdded.await(); //Pausing the thread until there's more tickets
             }
@@ -77,10 +88,12 @@ public class TicketPool {
 
             totalTickets -= noOfTickets;
             totalSoldTickets += 1;
+            System.out.println(System.currentTimeMillis() + " " + "Customer " + customerId + " purchased " + noOfTickets + " tickets. Total tickets : " + totalTickets);
             //Log.log("INFO", System.currentTimeMillis() + " " + "Customer " + customerId + " purchased " + noOfTickets + " tickets. Total tickets : " + totalTickets);
             ticketsRemoved.signalAll(); //Notifying vendor threads
         }
         catch (InterruptedException e) {
+            System.out.println("Customer " + customerId + " encountered error while purchasing ticket");
             //Log.log("WARNING", "Customer " + customerId + " encountered error while purchasing ticket");
         }
         finally {

@@ -11,6 +11,7 @@ public class CustomerRunner implements Runnable{
     private int priority;
     static int customerNo = 1;
     private final TicketPool ticketPool;
+    private volatile boolean started = true;
 
     public CustomerRunner (int ticketsPerRetrieval, int releaseInterval, int priority, TicketPool ticketPool) {
         this.customerId = customerNo++;
@@ -23,7 +24,7 @@ public class CustomerRunner implements Runnable{
     @Override
     public void run() {
         try {
-            while (!Thread.currentThread().isInterrupted()) {
+            while (started) {
                 ticketPool.removeTicket(customerId, ticketsPerRetrieval);
                 Thread.sleep(retrievalInterval * 1000L);
             }
@@ -31,5 +32,9 @@ public class CustomerRunner implements Runnable{
         catch (InterruptedException e){
             //Log.log("WARNING", "Vendor " + customerId + " encountered error in thread.");
         }
+    }
+
+    public void stop() {
+        this.started = false;
     }
 }

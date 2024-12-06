@@ -2,12 +2,12 @@ package com.w2053115.Sajitha.RealtimeTicketingSystem.service.implementation;
 
 import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Configuration;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Customer;
-import com.w2053115.Sajitha.RealtimeTicketingSystem.repositary.CustomerRepo;
+import com.w2053115.Sajitha.RealtimeTicketingSystem.repository.CustomerRepo;
+import com.w2053115.Sajitha.RealtimeTicketingSystem.service.SystemState;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.TicketPool;
-import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.ConfigurationService;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.CustomerService;
-import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.SystemService;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.runnable.CustomerRunner;
+import com.w2053115.Sajitha.RealtimeTicketingSystem.service.runnable.VendorRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,24 +18,19 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final ArrayList<Thread> customerThreadList = new ArrayList<>();
     private final ArrayList<CustomerRunner> customerObjectList = new ArrayList<>();
+    private int noOfCustomers = 0;
 
     @Autowired
     private CustomerRepo customerRepo;
 
     @Autowired
-    ConfigurationService configurationService;
+    Configuration configuration;
 
     @Autowired
     private TicketPool ticketPool;
 
-    @Autowired
-    private SystemService systemService;
-
     @Override
     public String createCustomer() {
-        //Load the configuration parameters into an object
-        Configuration configuration = configurationService.loadConfiguration();
-
         //Add customer details to the database
         Customer customer = new Customer(
                 configuration.getCustomerRetrievalRate(),
@@ -59,12 +54,13 @@ public class CustomerServiceImpl implements CustomerService {
         //Creating customer threads and storing it for accessing
         Thread customerThread = new Thread(customerObject);
         customerThreadList.add(customerThread);
-        if (systemService.getStart()) {
+        if (SystemState.getState()==SystemState.RUNNING) {
             customerThread.start();
         }
         for (Thread x : customerThreadList) {
             System.out.println(x.getName());
         }
+        noOfCustomers++;
         return "Customer " + customerObject.getCustomerId() + " created successfully";
     }
 
@@ -77,6 +73,7 @@ public class CustomerServiceImpl implements CustomerService {
                 customerRepo.delete(customerRepo.findFirstByOrderByCreatedDesc());
 
                 //Delete customer object and thread
+                customerThreadList.getLast().interrupt();
                 customerObjectList.removeLast();
                 customerThreadList.removeLast();
 
@@ -87,6 +84,7 @@ public class CustomerServiceImpl implements CustomerService {
                 return "Customer " + customerId + " Removed";
             } else {
                 System.out.println("Customer objects are null");
+                noOfCustomers--;
                 return "Customer objects are null";
             }
         } catch (NullPointerException e) {
@@ -96,20 +94,36 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void startVendors9() {
+    public void startCustomers() {
         for (Thread thread : customerThreadList) {
             thread.start();
         }
+        System.out.println("Customers started");
     }
 
     @Override
-    public void stopVendors() {
-        try {
-            for (Thread thread : customerThreadList) {
-                thread.wait();
-            }
-        } catch (InterruptedException e) {
-            System.out.println("Error while stopping customer threads");
+    public void stopCustomers() {
+        for (CustomerRunner customerRunner : customerObjectList) {
+            customerRunner.stop();
         }
+        System.out.println("Customers stopped");
+    }
+
+    @Override
+    public void resetCustomers() {
+        if (!customerObjectList.isEmpty() && !customerThreadList.isEmpty()) {
+            for (Thread thread : customerThreadList) {
+                thread.interrupt();
+            }
+            customerObjectList.clear();
+            customerThreadList.clear();
+        }
+        noOfCustomers = 0;
+        System.out.println("Customers reset");
+    }
+
+    @Override
+    public int getCustomers() {
+        return noOfCustomers;
     }
 }

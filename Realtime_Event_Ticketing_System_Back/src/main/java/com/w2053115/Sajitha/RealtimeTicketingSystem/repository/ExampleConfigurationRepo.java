@@ -1,4 +1,4 @@
-package com.w2053115.Sajitha.RealtimeTicketingSystem.repositary;
+package com.w2053115.Sajitha.RealtimeTicketingSystem.repository;
 
 import com.w2053115.Sajitha.RealtimeTicketingSystem.model.ExampleConfiguration;
 import org.springframework.data.mongodb.repository.MongoRepository;

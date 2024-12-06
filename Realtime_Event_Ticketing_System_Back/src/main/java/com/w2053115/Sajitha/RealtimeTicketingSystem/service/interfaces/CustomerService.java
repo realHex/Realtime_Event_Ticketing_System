@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 public interface CustomerService {
     public String createCustomer();
     public String removeCustomer();
-    public void startVendors9();
-    public void stopVendors();
+    public void startCustomers();
+    public void stopCustomers();
+    public void resetCustomers();
+    public int getCustomers();
 }
