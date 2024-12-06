@@ -2,9 +2,10 @@ package com.w2053115.Sajitha.RealtimeTicketingSystem.service.implementation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Configuration;
-import com.w2053115.Sajitha.RealtimeTicketingSystem.service.SystemState;
+import com.w2053115.Sajitha.RealtimeTicketingSystem.service.shared.SystemState;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.ConfigurationService;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.SystemService;
+import jakarta.annotation.PostConstruct;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,5 +69,11 @@ public class ConfigurationServiceImpl implements ConfigurationService {
                 throw new RuntimeException();
             }
         }
+    }
+
+    @PostConstruct
+    @Override
+    public void loadConfigurationAtStartup() {
+        loadConfiguration();
     }
 }

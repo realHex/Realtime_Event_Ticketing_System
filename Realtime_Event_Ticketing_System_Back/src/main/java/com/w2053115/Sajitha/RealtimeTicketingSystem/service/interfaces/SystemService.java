@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface SystemService {
 
-    public void initializer();
+    void initializer();
 
     String startApplication();
 

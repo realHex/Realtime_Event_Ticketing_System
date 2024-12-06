@@ -8,6 +8,6 @@ public interface ConfigurationService {
 
     Configuration loadConfiguration();
     void saveConfiguration(Configuration configuration);
-
+    void loadConfigurationAtStartup();
 
 }

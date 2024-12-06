@@ -4,10 +4,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface VendorService {
-    public String createVendor();
-    public String removeVendor();
-    public void startVendors();
-    public void stopVendors();
-    public void resetVendors();
-    public int getVendors();
+    String createVendor();
+    String removeVendor();
+    void startVendors();
+    void stopVendors();
+    void resumeVendors();
+    void resetVendors();
+    int getVendors();
 }

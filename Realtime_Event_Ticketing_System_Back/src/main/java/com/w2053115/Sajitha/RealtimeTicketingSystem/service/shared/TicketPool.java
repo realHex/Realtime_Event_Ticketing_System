@@ -1,4 +1,4 @@
-package com.w2053115.Sajitha.RealtimeTicketingSystem.service;
+package com.w2053115.Sajitha.RealtimeTicketingSystem.service.shared;
 
 
 import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Ticket;
@@ -67,6 +67,7 @@ public class TicketPool {
             ticketsAdded.signalAll(); //Notifying customer threads
         }
         catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
             System.out.println("Vendor " + vendorId + " encountered error while adding ticket");
             //Log.log("WARNING", "Vendor " + vendorId + " encountered error while adding ticket");
         }
@@ -93,6 +94,7 @@ public class TicketPool {
             ticketsRemoved.signalAll(); //Notifying vendor threads
         }
         catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
             System.out.println("Customer " + customerId + " encountered error while purchasing ticket");
             //Log.log("WARNING", "Customer " + customerId + " encountered error while purchasing ticket");
         }

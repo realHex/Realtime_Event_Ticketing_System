@@ -3,14 +3,15 @@ package com.w2053115.Sajitha.RealtimeTicketingSystem.service.implementation;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Configuration;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Vendor;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.repository.VendorRepo;
-import com.w2053115.Sajitha.RealtimeTicketingSystem.service.SystemState;
-import com.w2053115.Sajitha.RealtimeTicketingSystem.service.TicketPool;
+import com.w2053115.Sajitha.RealtimeTicketingSystem.service.shared.SystemState;
+import com.w2053115.Sajitha.RealtimeTicketingSystem.service.shared.TicketPool;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.VendorService;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.runnable.VendorRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 @Service
 public class VendorServiceImpl implements VendorService {
@@ -85,10 +86,11 @@ public class VendorServiceImpl implements VendorService {
                     System.out.println(x.getName());
                 }
                 noOfVendors--;
+                VendorRunner.reduceId();
                 return "Vendor " + vendorId + " Removed";
             }
             else {
-                System.out.println("Vendor objects are null");
+                System.out.println("There's no vendors added");
                 return "Vendor objects are null";
             }
         }
@@ -100,6 +102,10 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     public void startVendors(){
+        if (noOfVendors < 0) {
+            System.out.println("There are no vendors");
+            return;
+        }
         for (Thread thread : vendorThreadList) {
             thread.start();
         }
@@ -108,10 +114,13 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     public void stopVendors(){
-        for (VendorRunner vendorRunner : vendorObjectList) {
-            vendorRunner.stop();
-        }
+        VendorRunner.stop();
         System.out.println("Vendors stopped");
+    }
+
+    @Override
+    public void resumeVendors(){
+        VendorRunner.resume();
     }
 
     @Override
@@ -120,10 +129,13 @@ public class VendorServiceImpl implements VendorService {
             for (Thread thread : vendorThreadList) {
                 thread.interrupt();
             }
+            //Collections.fill(vendorObjectList, null);
             vendorObjectList.clear();
             vendorThreadList.clear();
         }
+        VendorRunner.resume();
         noOfVendors = 0;
+        VendorRunner.resetVendorIds();
         System.out.println("Vendors reset");
     }
 
