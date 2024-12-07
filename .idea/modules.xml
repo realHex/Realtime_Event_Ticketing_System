@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Realtime_Event_Ticketing_System.iml" filepath="$PROJECT_DIR$/.idea/Realtime_Event_Ticketing_System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CLI/cli.iml" filepath="$PROJECT_DIR$/CLI/cli.iml" />
     </modules>
   </component>
 </project>

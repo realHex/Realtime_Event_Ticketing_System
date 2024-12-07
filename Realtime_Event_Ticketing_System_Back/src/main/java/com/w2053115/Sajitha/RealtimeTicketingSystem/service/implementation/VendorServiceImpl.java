@@ -57,7 +57,7 @@ public class VendorServiceImpl implements VendorService {
         //Creating vendor threads and storing it for accessing
         Thread vendorThread = new Thread(vendorObject);
         vendorThreadList.add(vendorThread);
-        if (SystemState.getState()==SystemState.RUNNING) {
+        if (SystemState.getState()==SystemState.RUNNING || SystemState.getState()==SystemState.PAUSED) {
             vendorThread.start();
         }
         for (Thread x : vendorThreadList) {

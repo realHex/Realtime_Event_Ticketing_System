@@ -59,7 +59,7 @@ public class CustomerServiceImpl implements CustomerService {
         //Creating customer threads and storing it for accessing
         Thread customerThread = new Thread(customerObject);
         customerThreadList.add(customerThread);
-        if (SystemState.getState()==SystemState.RUNNING) {
+        if (SystemState.getState()==SystemState.RUNNING || SystemState.getState()==SystemState.PAUSED) {
             customerThread.start();
         }
         for (Thread x : customerThreadList) {
