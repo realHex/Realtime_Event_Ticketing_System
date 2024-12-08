@@ -5,21 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06b3bb39-e3dc-492e-a0ff-bc3c8bf04c1c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/w2053115/Setups/AbstractTicketHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/w2053115/Setups/Configuration/Configuration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/w2053115/Setups/Configuration/ConfigurationUtility.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/w2053115/Setups/SharedTicketPool/TicketPool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/w2053115/Setups/Ticket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/w2053115/Setups/Users/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/w2053115/Setups/Users/Vendor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/w2053115/TicketingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/.vscode/extensions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/.vscode/tasks.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/src/app/app.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/src/app/app.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/src/app/app.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/src/app/app.routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/src/styles.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Realtime_Event_Ticketing_System_Front/tsconfig.spec.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +46,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -54,9 +65,9 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/CLI",
+    "last_opened_file_path": "C:/Users/Hexun/Documents/GitHub/Realtime_Event_Ticketing_System",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -94,6 +105,7 @@
       <updated>1733575118162</updated>
       <workItem from="1733575119365" duration="20320000" />
       <workItem from="1733600256102" duration="5267000" />
+      <workItem from="1733613056730" duration="48000" />
     </task>
     <servers />
   </component>
