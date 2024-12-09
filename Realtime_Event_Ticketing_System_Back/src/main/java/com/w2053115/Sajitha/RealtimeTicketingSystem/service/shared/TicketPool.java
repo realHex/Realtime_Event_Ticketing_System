@@ -3,6 +3,8 @@ package com.w2053115.Sajitha.RealtimeTicketingSystem.service.shared;
 
 import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Ticket;
 import lombok.Data;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ import java.util.concurrent.locks.ReentrantLock;
 @Service
 @Data
 public class TicketPool {
+    private static final Logger logger = LoggerFactory.getLogger(TicketPool.class);
+
     private final List<Ticket> ticketPool = Collections.synchronizedList(new ArrayList<>());
     private final ReentrantLock lock = new ReentrantLock(true);
     private final Condition ticketsAdded = lock.newCondition();
@@ -51,8 +55,8 @@ public class TicketPool {
         try {
             //Checking if the number of tickets exceeds ticket capacity
             while(totalTickets + noOfTickets > maxTicketCapacity) {
-                //Log.log("INFO",System.currentTimeMillis() + " " + "Vendor " + vendorId + " is waiting for tickets to be purchased. Total tickets : " + totalTickets);
-                System.out.println(System.currentTimeMillis() + " " + "Vendor " + vendorId + " is waiting for tickets to be purchased. Total tickets : " + totalTickets);
+                logger.info("Vendor {} is waiting for tickets to be purchased." +
+                        " Total Tickets : {}", vendorId, totalTickets);
                 ticketsRemoved.await(); //Pausing the thread until there's space
             }
             //Adding tickets to the list
@@ -62,14 +66,13 @@ public class TicketPool {
             }
             totalTickets += noOfTickets;
             totalAddedTickets += 1;
-            System.out.println(System.currentTimeMillis() + " " + "Vendor " + vendorId + " added " + noOfTickets + " tickets. Total tickets : " + totalTickets);
-            //Log.log("INFO", System.currentTimeMillis() + " " + "Vendor " + vendorId + " added " + noOfTickets + " tickets. Total tickets : " + totalTickets);
+            logger.info("Vendor {} added {} tickets. Total Tickets : {}",
+                    vendorId, noOfTickets, totalTickets);
             ticketsAdded.signalAll(); //Notifying customer threads
         }
         catch (InterruptedException e) {
+            logger.error("Vendor {} encountered error while adding ticket", vendorId);
             Thread.currentThread().interrupt();
-            System.out.println("Vendor " + vendorId + " encountered error while adding ticket");
-            //Log.log("WARNING", "Vendor " + vendorId + " encountered error while adding ticket");
         }
         finally {
             lock.unlock();
@@ -80,8 +83,8 @@ public class TicketPool {
         try {
             //Checking if there are enough tickets to purchase
             while (totalTickets - noOfTickets < 0) {
-                System.out.println(System.currentTimeMillis() + " " + "Customer " + customerId + " is waiting for tickets to be added. Total tickets : " + totalTickets);
-                //Log.log("INFO", System.currentTimeMillis() + " " + "Customer " + customerId + " is waiting for tickets to be added. Total tickets : " + totalTickets);
+                logger.info("Customer {} is waiting for tickets to be added." +
+                        " Total Tickets : {}", customerId, totalTickets);
                 ticketsAdded.await(); //Pausing the thread until there's more tickets
             }
             //Removing tickets from the list
@@ -89,14 +92,13 @@ public class TicketPool {
 
             totalTickets -= noOfTickets;
             totalSoldTickets += 1;
-            System.out.println(System.currentTimeMillis() + " " + "Customer " + customerId + " purchased " + noOfTickets + " tickets. Total tickets : " + totalTickets);
-            //Log.log("INFO", System.currentTimeMillis() + " " + "Customer " + customerId + " purchased " + noOfTickets + " tickets. Total tickets : " + totalTickets);
+            logger.info("Customer {} purchased {} tickets. Total Tickets : {}",
+                    customerId, noOfTickets, totalTickets);
             ticketsRemoved.signalAll(); //Notifying vendor threads
         }
         catch (InterruptedException e) {
+            logger.error("Customer {} encountered error while purchasing ticket", customerId);
             Thread.currentThread().interrupt();
-            System.out.println("Customer " + customerId + " encountered error while purchasing ticket");
-            //Log.log("WARNING", "Customer " + customerId + " encountered error while purchasing ticket");
         }
         finally {
             lock.unlock();

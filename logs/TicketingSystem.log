@@ -1,2 +1,374 @@
 2024-12-08 02:46:46 [INFO] New configuration saved. [Total tickets : 1, Ticket Release Rate : 1, Customer Purchase Rate : 1, Max Ticket Capacity : 2]
 2024-12-08 02:48:06 [INFO] New configuration saved. [Total tickets : 50, Ticket Release Rate : 5, Customer Purchase Rate : 4, Max Ticket Capacity : 100]
+2024-12-08 23:08:48 [INFO] Previous configuration loaded. [Total tickets : 50, Ticket Release Rate : 5, Customer Purchase Rate : 4, Max Ticket Capacity : 100]
+2024-12-08 23:08:58 [INFO] Application starting...
+2024-12-08 23:09:02 [INFO] Vendor 1 added 5 tickets. Total Tickets : 55
+2024-12-08 23:09:02 [INFO] Vendor 5 added 5 tickets. Total Tickets : 60
+2024-12-08 23:09:02 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 56
+2024-12-08 23:09:02 [INFO] Vendor 2 added 5 tickets. Total Tickets : 61
+2024-12-08 23:09:02 [INFO] Vendor 3 added 5 tickets. Total Tickets : 66
+2024-12-08 23:09:02 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 62
+2024-12-08 23:09:02 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 58
+2024-12-08 23:09:02 [INFO] Vendor 4 added 5 tickets. Total Tickets : 63
+2024-12-08 23:09:02 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 59
+2024-12-08 23:09:02 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 55
+2024-12-08 23:09:03 [INFO] Vendor 5 added 5 tickets. Total Tickets : 60
+2024-12-08 23:09:03 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 56
+2024-12-08 23:09:03 [INFO] Vendor 1 added 5 tickets. Total Tickets : 61
+2024-12-08 23:09:03 [INFO] Vendor 2 added 5 tickets. Total Tickets : 66
+2024-12-08 23:09:03 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 62
+2024-12-08 23:09:03 [INFO] Vendor 3 added 5 tickets. Total Tickets : 67
+2024-12-08 23:09:03 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 63
+2024-12-08 23:09:03 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 59
+2024-12-08 23:09:03 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 55
+2024-12-08 23:09:03 [INFO] Vendor 4 added 5 tickets. Total Tickets : 60
+2024-12-08 23:09:04 [INFO] Vendor 5 added 5 tickets. Total Tickets : 65
+2024-12-08 23:09:04 [INFO] Vendor 2 added 5 tickets. Total Tickets : 70
+2024-12-08 23:09:04 [INFO] Vendor 3 added 5 tickets. Total Tickets : 75
+2024-12-08 23:09:04 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 71
+2024-12-08 23:09:04 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 67
+2024-12-08 23:09:04 [INFO] Vendor 1 added 5 tickets. Total Tickets : 72
+2024-12-08 23:09:04 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 68
+2024-12-08 23:09:04 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 64
+2024-12-08 23:09:04 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 60
+2024-12-08 23:09:04 [INFO] Vendor 4 added 5 tickets. Total Tickets : 65
+2024-12-08 23:09:05 [INFO] Vendor 5 added 5 tickets. Total Tickets : 70
+2024-12-08 23:09:05 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 66
+2024-12-08 23:09:05 [INFO] Vendor 1 added 5 tickets. Total Tickets : 71
+2024-12-08 23:09:05 [INFO] Vendor 3 added 5 tickets. Total Tickets : 76
+2024-12-08 23:09:05 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 72
+2024-12-08 23:09:05 [INFO] Vendor 2 added 5 tickets. Total Tickets : 77
+2024-12-08 23:09:05 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 73
+2024-12-08 23:09:05 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 69
+2024-12-08 23:09:05 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 65
+2024-12-08 23:09:05 [INFO] Vendor 4 added 5 tickets. Total Tickets : 70
+2024-12-08 23:09:06 [INFO] Vendor 5 added 5 tickets. Total Tickets : 75
+2024-12-08 23:09:06 [INFO] Vendor 3 added 5 tickets. Total Tickets : 80
+2024-12-08 23:09:06 [INFO] Vendor 2 added 5 tickets. Total Tickets : 85
+2024-12-08 23:09:06 [INFO] Vendor 1 added 5 tickets. Total Tickets : 90
+2024-12-08 23:09:06 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 86
+2024-12-08 23:09:06 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 82
+2024-12-08 23:09:06 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 78
+2024-12-08 23:09:06 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 74
+2024-12-08 23:09:06 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 70
+2024-12-08 23:09:06 [INFO] Vendor 4 added 5 tickets. Total Tickets : 75
+2024-12-08 23:09:07 [INFO] Vendor 5 added 5 tickets. Total Tickets : 80
+2024-12-08 23:09:07 [INFO] Vendor 3 added 5 tickets. Total Tickets : 85
+2024-12-08 23:09:07 [INFO] Vendor 2 added 5 tickets. Total Tickets : 90
+2024-12-08 23:09:07 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 86
+2024-12-08 23:09:07 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 82
+2024-12-08 23:09:07 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 78
+2024-12-08 23:09:07 [INFO] Vendor 1 added 5 tickets. Total Tickets : 83
+2024-12-08 23:09:07 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 79
+2024-12-08 23:09:07 [INFO] Vendor 4 added 5 tickets. Total Tickets : 84
+2024-12-08 23:09:07 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 80
+2024-12-08 23:09:08 [INFO] Vendor 5 added 5 tickets. Total Tickets : 85
+2024-12-08 23:09:08 [INFO] Vendor 2 added 5 tickets. Total Tickets : 90
+2024-12-08 23:09:08 [INFO] Vendor 3 added 5 tickets. Total Tickets : 95
+2024-12-08 23:09:08 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 91
+2024-12-08 23:09:08 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 87
+2024-12-08 23:09:08 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 83
+2024-12-08 23:09:08 [INFO] Vendor 1 added 5 tickets. Total Tickets : 88
+2024-12-08 23:09:08 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 84
+2024-12-08 23:09:08 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 80
+2024-12-08 23:09:08 [INFO] Vendor 4 added 5 tickets. Total Tickets : 85
+2024-12-08 23:09:09 [INFO] Vendor 5 added 5 tickets. Total Tickets : 90
+2024-12-08 23:09:09 [INFO] Vendor 2 added 5 tickets. Total Tickets : 95
+2024-12-08 23:09:09 [INFO] Vendor 3 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:09 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:09 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:09 [INFO] Vendor 1 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:09 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:09 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 89
+2024-12-08 23:09:09 [INFO] Vendor 4 added 5 tickets. Total Tickets : 94
+2024-12-08 23:09:09 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 90
+2024-12-08 23:09:10 [INFO] Vendor 5 added 5 tickets. Total Tickets : 95
+2024-12-08 23:09:10 [INFO] Vendor 3 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:10 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:10 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:10 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:10 [INFO] Vendor 2 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:10 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:10 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:10 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 89
+2024-12-08 23:09:10 [INFO] Vendor 1 added 5 tickets. Total Tickets : 94
+2024-12-08 23:09:10 [INFO] Vendor 4 added 5 tickets. Total Tickets : 99
+2024-12-08 23:09:10 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 95
+2024-12-08 23:09:11 [INFO] Vendor 5 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:11 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:11 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:11 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:11 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 88
+2024-12-08 23:09:11 [INFO] Vendor 2 added 5 tickets. Total Tickets : 93
+2024-12-08 23:09:11 [INFO] Vendor 3 added 5 tickets. Total Tickets : 98
+2024-12-08 23:09:11 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 94
+2024-12-08 23:09:11 [INFO] Vendor 1 added 5 tickets. Total Tickets : 99
+2024-12-08 23:09:11 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:11 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 95
+2024-12-08 23:09:11 [INFO] Vendor 4 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:12 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:12 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:12 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:12 [INFO] Vendor 5 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:12 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:12 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:12 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:12 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 89
+2024-12-08 23:09:12 [INFO] Vendor 3 added 5 tickets. Total Tickets : 94
+2024-12-08 23:09:12 [INFO] Vendor 1 added 5 tickets. Total Tickets : 99
+2024-12-08 23:09:12 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:12 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:12 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 95
+2024-12-08 23:09:12 [INFO] Vendor 2 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:12 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:13 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:13 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 96
+2024-12-08 23:09:13 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:13 [INFO] Vendor 4 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:13 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:13 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:13 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:13 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:13 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 89
+2024-12-08 23:09:13 [INFO] Vendor 3 added 5 tickets. Total Tickets : 94
+2024-12-08 23:09:13 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 90
+2024-12-08 23:09:13 [INFO] Vendor 5 added 5 tickets. Total Tickets : 95
+2024-12-08 23:09:13 [INFO] Vendor 1 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:13 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:14 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:14 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 96
+2024-12-08 23:09:14 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:14 [INFO] Vendor 2 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:14 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:14 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:14 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 89
+2024-12-08 23:09:14 [INFO] Vendor 4 added 5 tickets. Total Tickets : 94
+2024-12-08 23:09:14 [INFO] Vendor 1 added 5 tickets. Total Tickets : 99
+2024-12-08 23:09:14 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:14 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 95
+2024-12-08 23:09:14 [INFO] Vendor 3 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:14 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:15 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:15 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 96
+2024-12-08 23:09:15 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 96
+2024-12-08 23:09:15 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:15 [INFO] Vendor 5 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:15 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:15 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:15 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 89
+2024-12-08 23:09:15 [INFO] Vendor 4 added 5 tickets. Total Tickets : 94
+2024-12-08 23:09:15 [INFO] Vendor 2 added 5 tickets. Total Tickets : 99
+2024-12-08 23:09:15 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:15 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 95
+2024-12-08 23:09:15 [INFO] Vendor 1 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:15 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:16 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:16 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:16 [INFO] Vendor 5 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:16 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:16 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:16 [INFO] Vendor 2 added 5 tickets. Total Tickets : 98
+2024-12-08 23:09:16 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 98
+2024-12-08 23:09:16 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 94
+2024-12-08 23:09:16 [INFO] Vendor 3 added 5 tickets. Total Tickets : 99
+2024-12-08 23:09:16 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:16 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:16 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 95
+2024-12-08 23:09:16 [INFO] Vendor 4 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:16 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:17 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:17 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 96
+2024-12-08 23:09:17 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:17 [INFO] Vendor 1 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:17 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:17 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:17 [INFO] Vendor 3 added 5 tickets. Total Tickets : 98
+2024-12-08 23:09:17 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 94
+2024-12-08 23:09:17 [INFO] Vendor 2 added 5 tickets. Total Tickets : 99
+2024-12-08 23:09:17 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:17 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:17 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 95
+2024-12-08 23:09:17 [INFO] Vendor 5 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:17 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:18 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:18 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:18 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:18 [INFO] Vendor 4 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:18 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:18 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:18 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 89
+2024-12-08 23:09:18 [INFO] Vendor 2 added 5 tickets. Total Tickets : 94
+2024-12-08 23:09:18 [INFO] Vendor 3 added 5 tickets. Total Tickets : 99
+2024-12-08 23:09:18 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:18 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:18 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 95
+2024-12-08 23:09:18 [INFO] Vendor 1 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:18 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:19 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:19 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:19 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:19 [INFO] Vendor 5 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:19 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:19 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:19 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 89
+2024-12-08 23:09:19 [INFO] Vendor 2 added 5 tickets. Total Tickets : 94
+2024-12-08 23:09:19 [INFO] Vendor 3 added 5 tickets. Total Tickets : 99
+2024-12-08 23:09:19 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:19 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:19 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 95
+2024-12-08 23:09:19 [INFO] Vendor 4 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:19 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:20 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:20 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:20 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 88
+2024-12-08 23:09:20 [INFO] Vendor 5 added 5 tickets. Total Tickets : 93
+2024-12-08 23:09:20 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 89
+2024-12-08 23:09:20 [INFO] Vendor 3 added 5 tickets. Total Tickets : 94
+2024-12-08 23:09:20 [INFO] Vendor 2 added 5 tickets. Total Tickets : 99
+2024-12-08 23:09:20 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:20 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 95
+2024-12-08 23:09:20 [INFO] Vendor 4 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:20 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:21 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:21 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:21 [INFO] Vendor 5 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:21 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:21 [INFO] Vendor 1 added 5 tickets. Total Tickets : 98
+2024-12-08 23:09:21 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 98
+2024-12-08 23:09:21 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 94
+2024-12-08 23:09:21 [INFO] Vendor 3 added 5 tickets. Total Tickets : 99
+2024-12-08 23:09:21 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:21 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 95
+2024-12-08 23:09:21 [INFO] Vendor 4 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:21 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:22 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:22 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:22 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:22 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:22 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 88
+2024-12-08 23:09:22 [INFO] Vendor 2 added 5 tickets. Total Tickets : 93
+2024-12-08 23:09:22 [INFO] Vendor 1 added 5 tickets. Total Tickets : 98
+2024-12-08 23:09:22 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 98
+2024-12-08 23:09:22 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 94
+2024-12-08 23:09:22 [INFO] Vendor 3 added 5 tickets. Total Tickets : 99
+2024-12-08 23:09:22 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:22 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:22 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 95
+2024-12-08 23:09:22 [INFO] Vendor 5 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:22 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:23 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:23 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:23 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 96
+2024-12-08 23:09:23 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:23 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 88
+2024-12-08 23:09:23 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 84
+2024-12-08 23:09:23 [INFO] Vendor 3 added 5 tickets. Total Tickets : 89
+2024-12-08 23:09:23 [INFO] Vendor 4 added 5 tickets. Total Tickets : 94
+2024-12-08 23:09:23 [INFO] Vendor 2 added 5 tickets. Total Tickets : 99
+2024-12-08 23:09:23 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:23 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 99
+2024-12-08 23:09:23 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 95
+2024-12-08 23:09:23 [INFO] Vendor 1 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:23 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:24 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:24 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 96
+2024-12-08 23:09:24 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 96
+2024-12-08 23:09:24 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 96
+2024-12-08 23:09:24 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:24 [INFO] Vendor 3 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:24 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:24 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 89
+2024-12-08 23:09:24 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 85
+2024-12-08 23:09:24 [INFO] Vendor 5 added 5 tickets. Total Tickets : 90
+2024-12-08 23:09:24 [INFO] Vendor 2 added 5 tickets. Total Tickets : 95
+2024-12-08 23:09:24 [INFO] Vendor 4 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:24 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:25 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:25 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 96
+2024-12-08 23:09:25 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:25 [INFO] Vendor 1 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:25 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:25 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:25 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:25 [INFO] Vendor 2 added 5 tickets. Total Tickets : 98
+2024-12-08 23:09:25 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 94
+2024-12-08 23:09:25 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 90
+2024-12-08 23:09:25 [INFO] Vendor 5 added 5 tickets. Total Tickets : 95
+2024-12-08 23:09:25 [INFO] Vendor 3 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:25 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:26 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:26 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:26 [INFO] Vendor 1 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:26 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:26 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:26 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:26 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 89
+2024-12-08 23:09:26 [INFO] Vendor 2 added 5 tickets. Total Tickets : 94
+2024-12-08 23:09:26 [INFO] Vendor 3 added 5 tickets. Total Tickets : 99
+2024-12-08 23:09:26 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 95
+2024-12-08 23:09:26 [INFO] Vendor 4 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:26 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:27 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:27 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:27 [INFO] Vendor 1 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:27 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:27 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:27 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 89
+2024-12-08 23:09:27 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 85
+2024-12-08 23:09:27 [INFO] Vendor 2 added 5 tickets. Total Tickets : 90
+2024-12-08 23:09:27 [INFO] Vendor 5 added 5 tickets. Total Tickets : 95
+2024-12-08 23:09:27 [INFO] Vendor 4 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:27 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:28 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:28 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:28 [INFO] Vendor 1 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:28 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:28 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:28 [INFO] Vendor 4 added 5 tickets. Total Tickets : 98
+2024-12-08 23:09:28 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 98
+2024-12-08 23:09:28 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 94
+2024-12-08 23:09:28 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 90
+2024-12-08 23:09:28 [INFO] Vendor 5 added 5 tickets. Total Tickets : 95
+2024-12-08 23:09:28 [INFO] Vendor 3 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:28 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:29 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:29 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 96
+2024-12-08 23:09:29 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:29 [INFO] Vendor 2 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:29 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:29 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:29 [INFO] Vendor 3 added 5 tickets. Total Tickets : 98
+2024-12-08 23:09:29 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 98
+2024-12-08 23:09:29 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 94
+2024-12-08 23:09:29 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 90
+2024-12-08 23:09:29 [INFO] Vendor 4 added 5 tickets. Total Tickets : 95
+2024-12-08 23:09:29 [INFO] Vendor 1 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:29 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:30 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:30 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 96
+2024-12-08 23:09:30 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:30 [INFO] Vendor 5 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:30 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:30 [INFO] Vendor 4 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:30 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:30 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:30 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 89
+2024-12-08 23:09:30 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 85
+2024-12-08 23:09:30 [INFO] Vendor 1 added 5 tickets. Total Tickets : 90
+2024-12-08 23:09:30 [INFO] Vendor 2 added 5 tickets. Total Tickets : 95
+2024-12-08 23:09:30 [INFO] Vendor 4 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:30 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-08 23:09:31 [INFO] Customer 4 purchased 4 tickets. Total Tickets : 96
+2024-12-08 23:09:31 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 96
+2024-12-08 23:09:31 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 96
+2024-12-08 23:09:31 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 92
+2024-12-08 23:09:31 [INFO] Vendor 3 added 5 tickets. Total Tickets : 97
+2024-12-08 23:09:31 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 97
+2024-12-08 23:09:31 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 93
+2024-12-08 23:09:31 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 89
+2024-12-08 23:09:31 [INFO] Customer 5 purchased 4 tickets. Total Tickets : 85
+2024-12-08 23:09:31 [INFO] Vendor 4 added 5 tickets. Total Tickets : 90
+2024-12-08 23:09:31 [INFO] Vendor 2 added 5 tickets. Total Tickets : 95
+2024-12-08 23:09:31 [INFO] Vendor 1 added 5 tickets. Total Tickets : 100
+2024-12-08 23:09:31 [INFO] Vendor 5 is waiting for tickets to be purchased. Total Tickets : 100
+2024-12-09 01:13:47 [INFO] New configuration saved. [Total tickets : 50, Ticket Release Rate : 5, Customer Purchase Rate : 4, Max Ticket Capacity : 100]

@@ -15,14 +15,13 @@ public class ConfigurationController {
 
     @GetMapping(path = "/load-configuration")
     public Configuration loadConfiguration() {
-
+        
         return configurationService.loadConfiguration();
     }
 
     @PostMapping(path = "/save-configuration")
     public String saveConfiguration(@RequestBody Configuration configuration) {
 
-        configurationService.saveConfiguration(configuration);
-        return "Configuration Saved";
+        return configurationService.saveConfiguration(configuration);
     }
 }

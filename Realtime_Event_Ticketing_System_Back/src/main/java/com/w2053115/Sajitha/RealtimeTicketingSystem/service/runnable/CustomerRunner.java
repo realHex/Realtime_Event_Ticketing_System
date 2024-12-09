@@ -2,9 +2,13 @@ package com.w2053115.Sajitha.RealtimeTicketingSystem.service.runnable;
 
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.shared.TicketPool;
 import lombok.Data;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Data
 public class CustomerRunner implements Runnable{
+    private static final Logger logger = LoggerFactory.getLogger(CustomerRunner.class);
+
     private int customerId;
     private int ticketsPerRetrieval;
     private int retrievalInterval;
@@ -27,7 +31,7 @@ public class CustomerRunner implements Runnable{
             while (true){
                 while (!paused) {
                     if (Thread.currentThread().isInterrupted())  {
-                        System.out.println("Customer thread " + customerId + " has been interrupted");
+                        logger.info("Customer thread " + customerId + " has been interrupted");
                         return;
                     }
                     ticketPool.removeTicket(customerId, ticketsPerRetrieval);
@@ -37,7 +41,7 @@ public class CustomerRunner implements Runnable{
         }
         catch (InterruptedException e){
             Thread.currentThread().interrupt();
-            //Log.log("WARNING", "Vendor " + customerId + " encountered error in thread.");
+            logger.error("Vendor " + customerId + " encountered error in thread.");
         }
     }
 

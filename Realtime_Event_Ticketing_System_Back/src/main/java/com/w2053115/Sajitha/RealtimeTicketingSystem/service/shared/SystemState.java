@@ -8,8 +8,6 @@ public enum SystemState {
     PAUSED,
     STOPPED;
 
-
-
     @Getter
     @Setter
     public static SystemState state = STOPPED;

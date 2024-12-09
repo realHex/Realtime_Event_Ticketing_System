@@ -7,14 +7,17 @@ import com.w2053115.Sajitha.RealtimeTicketingSystem.service.shared.SystemState;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.shared.TicketPool;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.VendorService;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.runnable.VendorRunner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
-import java.util.Collections;
+
+
 
 @Service
 public class VendorServiceImpl implements VendorService {
+    private static final Logger logger = LoggerFactory.getLogger(ConfigurationServiceImpl.class);
 
     private final ArrayList<Thread> vendorThreadList = new ArrayList<>();
     private final ArrayList<VendorRunner> vendorObjectList = new ArrayList<>();
@@ -40,11 +43,6 @@ public class VendorServiceImpl implements VendorService {
                 "0774950215"
         );
         vendorRepo.save(vendor);
-        System.out.println(configuration.getTotalTickets());
-        System.out.println(configuration.getTicketReleaseRate());
-        System.out.println(configuration.getCustomerRetrievalRate());
-        System.out.println(configuration.getMaxTicketCapacity());
-
 
         //Create vendor object (for making the thread)
         VendorRunner vendorObject = new VendorRunner(
@@ -64,6 +62,7 @@ public class VendorServiceImpl implements VendorService {
             System.out.println(x.getName());
         }
         noOfVendors++;
+        logger.info("Vendor " + vendorObject.getVendorId() + " created successfully");
         return "Vendor " + vendorObject.getVendorId() + " created successfully";
     }
 
@@ -80,22 +79,18 @@ public class VendorServiceImpl implements VendorService {
                 vendorObjectList.removeLast();
                 vendorThreadList.removeLast();
 
-
-                System.out.println("Vendor " + vendorId + " Removed");
-                for (Thread x : vendorThreadList) {
-                    System.out.println(x.getName());
-                }
                 noOfVendors--;
                 VendorRunner.reduceId();
+                logger.info("Vendor " + vendorId + " Removed");
                 return "Vendor " + vendorId + " Removed";
             }
             else {
-                System.out.println("There's no vendors added");
+                logger.warn("There's no vendors added");
                 return "Vendor objects are null";
             }
         }
         catch (NullPointerException e) {
-            System.out.println("No records for vendor");
+            logger.error("No records for vendor");
             throw e;
         }
     }
@@ -103,19 +98,19 @@ public class VendorServiceImpl implements VendorService {
     @Override
     public void startVendors(){
         if (noOfVendors < 0) {
-            System.out.println("There are no vendors");
+            logger.info("There are no vendors");
             return;
         }
         for (Thread thread : vendorThreadList) {
             thread.start();
         }
-        System.out.println("Vendors started");
+        logger.info("Vendors started");
     }
 
     @Override
     public void stopVendors(){
         VendorRunner.stop();
-        System.out.println("Vendors stopped");
+        logger.info("Vendors stopped");
     }
 
     @Override
@@ -136,7 +131,7 @@ public class VendorServiceImpl implements VendorService {
         VendorRunner.resume();
         noOfVendors = 0;
         VendorRunner.resetVendorIds();
-        System.out.println("Vendors reset");
+        logger.info("Vendors reset");
     }
 
     @Override

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public interface ConfigurationService {
 
     Configuration loadConfiguration();
-    void saveConfiguration(Configuration configuration);
+    String saveConfiguration(Configuration configuration);
     void loadConfigurationAtStartup();
 
 }

@@ -7,14 +7,16 @@ import com.w2053115.Sajitha.RealtimeTicketingSystem.service.shared.SystemState;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.shared.TicketPool;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.CustomerService;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.runnable.CustomerRunner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
-import java.util.Collections;
+
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
+    private static final Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
 
     private final ArrayList<Thread> customerThreadList = new ArrayList<>();
     private final ArrayList<CustomerRunner> customerObjectList = new ArrayList<>();
@@ -32,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public String createCustomer() {
         if (configuration.getMaxTicketCapacity() == 0) {
-            System.out.println("Cannot add customers without loading a configuration");
+            logger.info("Cannot add customers without loading a configuration");
             return "Cannot add customers without loading a configuration";
         }
 
@@ -66,6 +68,7 @@ public class CustomerServiceImpl implements CustomerService {
             System.out.println(x.getName());
         }
         noOfCustomers++;
+        logger.info("Customer " + customerObject.getCustomerId() + " created successfully");
         return "Customer " + customerObject.getCustomerId() + " created successfully";
     }
 
@@ -82,19 +85,16 @@ public class CustomerServiceImpl implements CustomerService {
                 customerObjectList.removeLast();
                 customerThreadList.removeLast();
 
-                System.out.println("Customer " + customerId + " Removed");
-                for (Thread x : customerThreadList) {
-                    System.out.println(x.getName());
-                }
+                noOfCustomers--;
                 CustomerRunner.reduceId();
+                logger.info("Customer " + customerId + " Removed");
                 return "Customer " + customerId + " Removed";
             } else {
-                System.out.println("Customer objects are null");
-                noOfCustomers--;
+                logger.warn("Customer objects are null");
                 return "Customer objects are null";
             }
         } catch (NullPointerException e) {
-            System.out.println("No records for customer");
+            logger.error("No records for customer");
             throw e;
         }
     }
@@ -102,13 +102,13 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void startCustomers() {
         if (noOfCustomers < 0) {
-            System.out.println("There are no customers");
+            logger.info("There are no customers");
             return;
         }
         for (Thread thread : customerThreadList) {
             thread.start();
         }
-        System.out.println("Customers started");
+        logger.info("Customers started");
     }
 
     @Override
@@ -116,7 +116,7 @@ public class CustomerServiceImpl implements CustomerService {
         for (CustomerRunner customerRunner : customerObjectList) {
             CustomerRunner.stop();
         }
-        System.out.println("Customers stopped");
+        logger.info("Customers stopped");
     }
 
     @Override
@@ -137,7 +137,7 @@ public class CustomerServiceImpl implements CustomerService {
         CustomerRunner.resume();
         CustomerRunner.resetCustomerIds();
         noOfCustomers = 0;
-        System.out.println("Customers reset");
+        logger.info("Customers reset");
     }
 
     @Override

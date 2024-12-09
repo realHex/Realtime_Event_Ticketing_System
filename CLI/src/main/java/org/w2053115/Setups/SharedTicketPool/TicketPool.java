@@ -55,8 +55,9 @@ public class TicketPool implements TicketPoolOperations{
             ticketsAdded.signalAll(); //Notifying customer threads
         }
         catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
             logger.error("Vendor {} encountered error while adding ticket", vendorId);
+            Thread.currentThread().interrupt();
+
         }
         finally {
             lock.unlock();
@@ -82,8 +83,8 @@ public class TicketPool implements TicketPoolOperations{
             ticketsRemoved.signalAll(); //Notifying vendor threads
         }
         catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
             logger.error("Customer {} encountered error while purchasing ticket", customerId);
+            Thread.currentThread().interrupt();
         }
         finally {
             lock.unlock();

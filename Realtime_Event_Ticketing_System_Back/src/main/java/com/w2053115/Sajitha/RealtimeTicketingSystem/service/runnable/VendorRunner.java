@@ -2,9 +2,12 @@ package com.w2053115.Sajitha.RealtimeTicketingSystem.service.runnable;
 
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.shared.TicketPool;
 import lombok.Data;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Data
 public class VendorRunner implements Runnable{
+    private static final Logger logger = LoggerFactory.getLogger(VendorRunner.class);
     private final int vendorId;
     private final int ticketsPerRelease;
     private final int releaseInterval;
@@ -25,7 +28,7 @@ public class VendorRunner implements Runnable{
             while (true){
                 while (!paused) {
                     if (Thread.currentThread().isInterrupted())  {
-                        System.out.println("Vendor thread " + vendorId + " has been interrupted");
+                        logger.info("Vendor thread " + vendorId + " has been interrupted");
                         return;
                     }
                     ticketPool.addTicket(vendorId, ticketsPerRelease);
@@ -35,7 +38,7 @@ public class VendorRunner implements Runnable{
         }
         catch (InterruptedException e){
             Thread.currentThread().interrupt();
-            //Log.log("WARNING", "Vendor " + vendorId + " encountered error in thread.");
+            logger.error("Vendor " + vendorId + " encountered error in thread.");
         }
     }
 

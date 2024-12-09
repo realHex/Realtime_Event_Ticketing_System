@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "TicketingSystem_Front": {
+    "TicketingSystem-Front": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -41,8 +41,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
                 }
               ],
               "outputHashing": "all"
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "TicketingSystem_Front:build:production"
+              "buildTarget": "TicketingSystem-Front:build:production"
             },
             "development": {
-              "buildTarget": "TicketingSystem_Front:build:development"
+              "buildTarget": "TicketingSystem-Front:build:development"
             }
           },
           "defaultConfiguration": "development"

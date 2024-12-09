@@ -9,6 +9,8 @@ import jakarta.annotation.PostConstruct;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 
@@ -25,10 +27,12 @@ public class ConfigurationServiceImpl implements ConfigurationService {
     private final ObjectMapper mapper = new ObjectMapper();
     private final String filePath = "configuration.json";
 
+    private static final Logger logger = LoggerFactory.getLogger(ConfigurationServiceImpl.class);
+
     @Override
     public Configuration loadConfiguration() {
         if (SystemState.getState()==SystemState.RUNNING){
-            System.out.println("Unable to load configuration while application is running");
+            logger.info("Unable to load configuration while application is running");
             return null;
         }
         else {
@@ -37,25 +41,26 @@ public class ConfigurationServiceImpl implements ConfigurationService {
                 FileReader readFile = new FileReader(file);
                 config.updateConfiguration((mapper.readValue(readFile,Configuration.class)));
                 systemService.initializer();
+                logger.info("Configuration loaded from existing file");
                 return config;
             }
             catch (FileNotFoundException e) {
-                //logger = "Error reading configuration file."
-                System.out.println("Error reading the file");
-                throw new RuntimeException();
+                logger.error("Error reading the file", e);
+                return null;
             }
             catch (IOException e){
                 //logger = "Error in the mapper."
-                System.out.println("Error mapping the file");
-                throw new RuntimeException();
+                logger.error("Error mapping the file", e);
+                return null;
             }
         }
     }
 
     @Override
-    public void saveConfiguration(Configuration configuration) {
+    public String saveConfiguration(Configuration configuration) {
         if (SystemState.getState()==SystemState.RUNNING){
-            System.out.println("Unable to save configuration while application is running");
+            logger.info("Unable to save configuration while application is running");
+            return "Unable to save configuration while application is running";
         }
         else {
             try {
@@ -63,9 +68,11 @@ public class ConfigurationServiceImpl implements ConfigurationService {
                 FileWriter writeFile = new FileWriter(file);
                 mapper.writeValue(writeFile,configuration);
                 loadConfiguration();
+                logger.info("Configuration file saved");
+                return "Configuration file saved";
             }
             catch (Exception e){
-                //logger = "Error writing to the configuration file."
+                logger.error("Error writing to the file");
                 throw new RuntimeException();
             }
         }
