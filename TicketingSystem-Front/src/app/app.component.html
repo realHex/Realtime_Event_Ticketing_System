@@ -1,5 +1,30 @@
+<app-controls-topbar></app-controls-topbar>
 
-<div>
-  <app-application-controls></app-application-controls>
+<div style="
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+">
+  <div style="
+  ">
+    <app-add-user></app-add-user>
+  </div>
+
+
+
+
+
+
+  <div style="
+    padding: 20px;
+  ">
+    <app-configuration-form></app-configuration-form>
+  </div>
 </div>
+
+
+
 <router-outlet />

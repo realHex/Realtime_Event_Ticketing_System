@@ -1,0 +1,34 @@
+<div style="display: flex; gap: 20px; padding: 20px; justify-content: space-between;">
+
+
+  <div id="main"  style="flex: 1; padding: 20px 10px 0px; text-align: center; background-color: white; border-radius: 0.5rem; box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); width: 25%; height: auto;">
+    <div style="font-size: small;">Active Vendors</div> <br>
+    <div style="font-size: x-large; font-weight: bold;">{{metrics.activeVendors}}</div>
+    <div style="display: flex; padding-bottom: 5px; justify-content: center; align-items: center; gap: 5px; margin-top: 5px;">
+      <p-button styleClass="p-button" icon="pi pi-minus" [rounded]="true" severity="success" size="small"></p-button>
+      <span style="font-size: medium; font-weight: bold;">Vendors</span>
+      <p-button icon="pi pi-plus" [rounded]="true" severity="success" size="small"></p-button>
+    </div>
+  </div>
+
+  <div id="main2" style="flex: 1; padding: 20px 10px 10px; text-align: center; background-color: white; border-radius: 0.5rem; box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); width: 25%; height: auto;">
+    <div style="font-size: small;">Active Customers</div> <br>
+    <div style="font-size: x-large; font-weight: bold;">{{metrics.activeCustomers}}</div>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 5px; margin-top: 5px;">
+      <p-button icon="pi pi-plus" [rounded]="true" severity="info" size="small"></p-button>
+      <span style="font-size: medium; font-weight: bold;">Customers</span>
+      <p-button icon="pi pi-minus" [rounded]="true" severity="info" size="small"></p-button>
+    </div>
+  </div>
+
+  <div id="main3" style="flex: 1; padding: 20px 10px 10px; text-align: center; background-color: white; border-radius: 0.5rem; box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); width: 25%; height: auto;">
+    <div style="font-size: small;">Active Priority Customers</div> <br>
+    <div style="font-size: x-large; font-weight: bold;">{{metrics.activePriorityCustomers}}</div>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 5px; margin-top: 5px;">
+      <p-button icon="pi pi-plus" [rounded]="true" severity="danger" size="small"></p-button>
+      <span style="font-size: medium; font-weight: bold;">Priority Customers</span>
+      <p-button icon="pi pi-minus" [rounded]="true" severity="danger" size="small"></p-button>
+    </div>
+  </div>
+
+</div>
