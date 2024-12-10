@@ -20,8 +20,8 @@ public class ConfigurationController {
     }
 
     @PostMapping(path = "/save-configuration")
-    public String saveConfiguration(@RequestBody Configuration configuration) {
+    public void saveConfiguration(@RequestBody Configuration configuration) {
 
-        return configurationService.saveConfiguration(configuration);
+        configurationService.saveConfiguration(configuration);
     }
 }

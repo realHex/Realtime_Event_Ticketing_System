@@ -35,6 +35,12 @@ public class VendorServiceImpl implements VendorService {
     @Override
     public String createVendor() {
 
+        if (configuration.getMaxTicketCapacity()  == 0 || configuration.getTotalTickets()  == 0 ||
+            configuration.getTicketReleaseRate()  == 0 || configuration.getCustomerRetrievalRate()  == 0) {
+            logger.warn("Load a Configuration before adding vendors");
+            return "Load a Configuration before adding vendors";
+        }
+
         //Add vendor details to the database
         Vendor vendor = new Vendor(
                 configuration.getTicketReleaseRate(),

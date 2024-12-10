@@ -8,6 +8,4 @@ public interface ConfigurationService {
 
     Configuration loadConfiguration();
     String saveConfiguration(Configuration configuration);
-    void loadConfigurationAtStartup();
-
 }

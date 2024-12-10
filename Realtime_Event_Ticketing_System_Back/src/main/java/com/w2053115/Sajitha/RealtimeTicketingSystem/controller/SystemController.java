@@ -14,18 +14,18 @@ public class SystemController {
     SystemService systemService;
 
     @PostMapping("/start")
-    public String startApplication() {
-        return systemService.startApplication();
+    public void startApplication() {
+        systemService.startApplication();
     }
 
     @PostMapping("/stop")
-    public String stopApplication() {
-        return systemService.stopApplication();
+    public void stopApplication() {
+        systemService.stopApplication();
     }
 
     @PostMapping("/reset")
-    public String resetApplication() {
-        return systemService.resetApplication();
+    public void resetApplication() {
+        systemService.resetApplication();
     }
 
     @GetMapping("/state")

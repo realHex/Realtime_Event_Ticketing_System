@@ -5,7 +5,9 @@ import {Button} from 'primeng/button';
 import {HttpClient} from '@angular/common/http';
 import {IConfiguration} from '../../model/class/configuration';
 import {NgClass, NgStyle} from '@angular/common';
-
+import {MasterControlService} from '../../services/master-control/master-control.service';
+import {SystemState} from '../../model/class/state';
+import {ToastrService} from 'ngx-toastr';
 
 
 @Component({
@@ -32,17 +34,33 @@ export class ConfigurationFormComponent implements OnInit{
     maxTicketCapacity: 0,
   }
 
+  systemState: SystemState = SystemState.STOPPED;
 
   http = inject(HttpClient);
+  masterService = inject(MasterControlService);
+  toaster = inject(ToastrService);
 
   ngOnInit() {
+    this.masterService.state$.subscribe((state) => {
+      this.systemState = state;
+    });
+    this.masterService.updateSystemState();
     this.loadConfiguration();
   }
 
   loadConfiguration() {
-    this.http.get<IConfiguration>("http://localhost:8080/api/configuration/load-configuration").subscribe((config:IConfiguration)=>{
-      this.configuration = config;
-    })
+    if (this.systemState === SystemState.STOPPED) {
+      this.http.get<IConfiguration>("http://localhost:8080/api/configuration/load-configuration").subscribe((config:IConfiguration)=>{
+        if (config!=null){
+          this.configuration = config;
+        }
+      })
+      this.toaster.success('Configuration Loaded')
+    } else if(this.systemState === SystemState.RUNNING) {
+      this.toaster.error('Unable to load while simulation running', 'Failed to load configuration')
+    } else {
+      this.toaster.error('Unable to load while simulation paused. Reset First', 'Failed to load configuration')
+    }
   }
 
   validateTotalTickets(): string {
@@ -106,9 +124,18 @@ export class ConfigurationFormComponent implements OnInit{
 
 
   saveConfiguration() {
-
+    if (this.systemState === SystemState.STOPPED) {
       this.http.post("http://localhost:8080/api/configuration/save-configuration", this.configuration)
         .subscribe();
+      this.toaster.success('Configuration Saved')
+    } else if(this.systemState === SystemState.RUNNING) {
+      this.toaster.error('Unable to save while simulation running', 'Failed to save configuration')
+    } else {
+      this.toaster.error('Unable to save while simulation paused. Reset First', 'Failed to save configuration')
+    }
+
+
+
     }
 
 

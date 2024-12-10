@@ -13,13 +13,13 @@ public class VendorController {
     private VendorService vendorService;
 
     @PostMapping(path = "/add-vendor")
-    public String addVendor(){
-        return vendorService.createVendor();
+    public void addVendor(){
+        vendorService.createVendor();
     }
 
     @DeleteMapping(path = "/remove-vendor")
-    public String removeVendor(){
-        return vendorService.removeVendor();
+    public void removeVendor(){
+        vendorService.removeVendor();
     }
 
     @GetMapping(path = "/get-vendor")

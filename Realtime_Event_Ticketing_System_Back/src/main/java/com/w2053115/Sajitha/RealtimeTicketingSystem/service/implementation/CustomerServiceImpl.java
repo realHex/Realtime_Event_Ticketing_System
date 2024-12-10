@@ -33,9 +33,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public String createCustomer() {
-        if (configuration.getMaxTicketCapacity() == 0) {
-            logger.info("Cannot add customers without loading a configuration");
-            return "Cannot add customers without loading a configuration";
+        if (configuration.getMaxTicketCapacity()  == 0 || configuration.getTotalTickets()  == 0 ||
+                configuration.getTicketReleaseRate()  == 0 || configuration.getCustomerRetrievalRate()  == 0) {
+            logger.warn("Load a Configuration before adding customers");
+            return "Load a Configuration before adding customers";
         }
 
         //Add customer details to the database

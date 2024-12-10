@@ -13,13 +13,13 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping(path = "/add-customer")
-    public String addCustomer(){
-        return customerService.createCustomer();
+    public void addCustomer(){
+        customerService.createCustomer();
     }
 
     @DeleteMapping(path = "/remove-customer")
-    public String removeCustomer(){
-        return customerService.removeCustomer();
+    public void removeCustomer(){
+        customerService.removeCustomer();
     }
 
     @GetMapping(path = "/get-customer")

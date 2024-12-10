@@ -31,28 +31,22 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 
     @Override
     public Configuration loadConfiguration() {
-        if (SystemState.getState()==SystemState.RUNNING){
-            logger.info("Unable to load configuration while application is running");
+        try {
+            File file = new File (filePath);
+            FileReader readFile = new FileReader(file);
+            config.updateConfiguration((mapper.readValue(readFile,Configuration.class)));
+            systemService.initializer();
+            logger.info("Configuration loaded from existing file");
+            return config;
+        }
+        catch (FileNotFoundException e) {
+            logger.error("Error reading the file");
             return null;
         }
-        else {
-            try {
-                File file = new File (filePath);
-                FileReader readFile = new FileReader(file);
-                config.updateConfiguration((mapper.readValue(readFile,Configuration.class)));
-                systemService.initializer();
-                logger.info("Configuration loaded from existing file");
-                return config;
-            }
-            catch (FileNotFoundException e) {
-                logger.error("Error reading the file", e);
-                return null;
-            }
-            catch (IOException e){
-                //logger = "Error in the mapper."
-                logger.error("Error mapping the file", e);
-                return null;
-            }
+        catch (IOException e){
+            //logger = "Error in the mapper."
+            logger.error("Error mapping the file");
+            return null;
         }
     }
 
@@ -79,7 +73,6 @@ public class ConfigurationServiceImpl implements ConfigurationService {
     }
 
     @PostConstruct
-    @Override
     public void loadConfigurationAtStartup() {
         loadConfiguration();
     }
