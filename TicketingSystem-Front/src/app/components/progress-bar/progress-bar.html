@@ -1,0 +1,21 @@
+<div style="gap: 20px; padding: 1px 20px 20px; margin-left:19px;
+  border-radius: 0.5rem; box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  width: 95%; height: 153px; overflow: visible;">
+
+  <div style="display: flex; justify-content: space-between; align-items: center; font-size: x-large;
+  font-weight: normal; padding: 30px 10px 30px;">
+    <div>Ticket Pool</div>
+    <div>{{ totalTickets }} out of {{ maxTicketCapacity }}</div>
+  </div>
+
+
+  <p-progressBar [value]="(totalTickets/maxTicketCapacity)*100">
+    <ng-template pTemplate="content" let-value>
+      <span>{{ totalTickets }}/{{ maxTicketCapacity }}</span>
+    </ng-template>
+  </p-progressBar>
+
+
+</div>
+
+
