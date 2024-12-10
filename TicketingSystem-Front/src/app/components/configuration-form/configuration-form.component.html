@@ -1,0 +1,132 @@
+
+<div class="card" style="
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 40rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);"
+>
+  <h4 style="margin: 5px; padding: 2px; line-height: 1.2rem; text-align:center;">Configure Parameters</h4>
+  <div style="display: flex; flex-direction: column; gap: 0.15rem; width: 100%; font-size: 0.7rem;">
+    <label for="total-tickets" style="font-weight: bold; font-size: 0.7rem; text-align: left;">Total Tickets</label>
+    <input
+      pInputText
+      id="total-tickets"
+      type = "number"
+      [(ngModel)]="configuration.totalTickets"
+      (ngModelChange)="validateTotalTickets()"
+      [ngClass]="{'p-invalid': configuration.totalTickets <= 0 || configuration.totalTickets >
+      configuration.maxTicketCapacity}"
+      aria-describedby="total-tickets-text"
+      style="width: 100%;"
+    />
+    <small
+      id="total-tickets-text"
+      [ngStyle]="{'color': configuration.totalTickets <= 0 || configuration.totalTickets >
+      configuration.maxTicketCapacity ? 'red' : 'inherit'}"
+
+      style="color: #666; font-size: 0.6rem; text-align: left;"
+    >
+      {{ validateTotalTickets() }}
+    </small>
+  </div>
+
+
+  <div style="display: flex; flex-direction: column; gap: 0.15rem; width: 100%; font-size: 0.7rem;">
+    <label for="ticket-release-rate" style="font-weight: bold; font-size: 0.7rem; text-align: left;">
+      Ticket Release Rate</label>
+    <input
+      pInputText
+      id="ticket-release-rate"
+      type = "number"
+      [(ngModel)]="configuration.ticketReleaseRate"
+      (ngModelChange)="validateTicketReleaseRate()"
+      [ngClass]="{'p-invalid': configuration.ticketReleaseRate <= 0 ||
+      this.configuration.ticketReleaseRate >= this.configuration.maxTicketCapacity}"
+      aria-describedby="ticket-release-rate-text"
+      style="width: 100%;"
+    />
+    <small
+      id="ticket-release-rate-text"
+      [ngStyle]="{'color': configuration.ticketReleaseRate <= 0 ||
+      this.configuration.ticketReleaseRate >= this.configuration.maxTicketCapacity? 'red' : 'inherit'}"
+      style="color: #666; font-size: 0.6rem; text-align: left;"
+    >
+      {{validateTicketReleaseRate()}}
+    </small>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 0.15rem; width: 100%; font-size: 0.7rem;">
+    <label for="customer-retrieval-rate" style="font-weight: bold; font-size: 0.7rem; text-align:
+    left;">Customer Retrieval Rate</label>
+    <input
+      pInputText
+      id="customer-retrieval-rate"
+      type = "number"
+      [(ngModel)]="configuration.customerRetrievalRate"
+      (ngModelChange)="validateCustomerRetrievalRate()"
+      [ngClass]="{'p-invalid': configuration.customerRetrievalRate <= 0 ||
+       this.configuration.customerRetrievalRate >= this.configuration.maxTicketCapacity}"
+      aria-describedby="customer-retrieval-rate-text"
+      style="width: 100%;"
+    />
+    <small
+      id="customer-retrieval-rate-text"
+      [ngStyle]="{'color': configuration.customerRetrievalRate <= 0 ||
+      this.configuration.customerRetrievalRate >= this.configuration.maxTicketCapacity? 'red' : 'inherit'}"
+      style="color: #666; font-size: 0.6rem; text-align: left;"
+    >
+      {{ validateCustomerRetrievalRate() }}
+    </small>
+  </div>
+
+
+
+  <div style="display: flex; flex-direction: column; gap: 0.15rem; width: 100%; font-size: 0.7rem;">
+    <label for="max-ticket-capacity" style="font-weight: bold; font-size: 0.7rem; text-align:
+    left;">Max Ticket Capacity</label>
+    <input
+      pInputText
+      id="max-ticket-capacity"
+      type = "number"
+      [(ngModel)]="configuration.maxTicketCapacity"
+      (ngModelChange)="validateMaxTicketCapacity()"
+      [ngClass]="{'p-invalid': configuration.maxTicketCapacity <= 0 ||
+       this.configuration.totalTickets > this.configuration.maxTicketCapacity}"
+      aria-describedby="max-ticket-capacity-text"
+      style="width: 100%;"
+    />
+    <small
+      id="max-ticket-capacity-text"
+      [ngStyle]="{'color': configuration.maxTicketCapacity <= 0 ||
+       this.configuration.totalTickets > this.configuration.maxTicketCapacity? 'red' : 'inherit'}"
+      style="color: #666; font-size: 0.6rem; text-align: left;"
+    >
+      {{ validateMaxTicketCapacity()}}
+    </small>
+  </div>
+
+
+
+
+  <div style="display: flex; justify-content: center; align-items:
+  center; gap: 5px; margin-top: 5px; padding-right: 15px; padding-top: 10px">
+    <div style="padding-left: 10px"><p-button (click)="loadConfiguration()" styleClass="p-button"
+                                              severity="success" [rounded]="true" size="small">
+      <label style="font-weight: bold; font-size: 0.6rem;">Load Configuration</label></p-button></div>
+
+
+    <div style="padding-left: 10px"><p-button (click)="saveConfiguration()" styleClass="p-button"
+                                              severity="info" [rounded]="true"
+                                              size="small" [disabled]="!validateSaveButtonAvailability()">
+      <label style="font-weight: bold; font-size: 0.6rem;">Save Configuration</label></p-button></div>
+  </div>
+
+
+
+</div>
+

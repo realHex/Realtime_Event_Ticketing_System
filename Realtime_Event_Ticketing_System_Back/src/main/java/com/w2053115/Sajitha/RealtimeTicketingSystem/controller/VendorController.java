@@ -21,4 +21,9 @@ public class VendorController {
     public String removeVendor(){
         return vendorService.removeVendor();
     }
+
+    @GetMapping(path = "/get-vendor")
+    public int getVendor() {
+        return vendorService.getVendors();
+    }
 }

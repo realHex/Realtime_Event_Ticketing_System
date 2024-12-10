@@ -97,10 +97,6 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     public void startVendors(){
-        if (noOfVendors < 0) {
-            logger.info("There are no vendors");
-            return;
-        }
         for (Thread thread : vendorThreadList) {
             thread.start();
         }

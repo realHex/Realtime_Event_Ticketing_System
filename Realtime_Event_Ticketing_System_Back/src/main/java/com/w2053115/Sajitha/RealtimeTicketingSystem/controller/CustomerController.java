@@ -21,4 +21,9 @@ public class CustomerController {
     public String removeCustomer(){
         return customerService.removeCustomer();
     }
+
+    @GetMapping(path = "/get-customer")
+    public int getCustomer() {
+        return customerService.getCustomers();
+    }
 }

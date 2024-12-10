@@ -90,8 +90,8 @@ public class CustomerServiceImpl implements CustomerService {
                 logger.info("Customer " + customerId + " Removed");
                 return "Customer " + customerId + " Removed";
             } else {
-                logger.warn("Customer objects are null");
-                return "Customer objects are null";
+                logger.warn("There's no customers added");
+                return "There's no customers added";
             }
         } catch (NullPointerException e) {
             logger.error("No records for customer");
@@ -101,10 +101,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void startCustomers() {
-        if (noOfCustomers < 0) {
-            logger.info("There are no customers");
-            return;
-        }
         for (Thread thread : customerThreadList) {
             thread.start();
         }

@@ -1,11 +1,9 @@
 package com.w2053115.Sajitha.RealtimeTicketingSystem.controller;
 
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.SystemService;
+import com.w2053115.Sajitha.RealtimeTicketingSystem.service.shared.SystemState;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -28,5 +26,10 @@ public class SystemController {
     @PostMapping("/reset")
     public String resetApplication() {
         return systemService.resetApplication();
+    }
+
+    @GetMapping("/state")
+    public SystemState getState() {
+        return SystemState.getState();
     }
 }
