@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/Realtime_Event_Ticketing_System_Back/pom.xml" />
         <option value="$PROJECT_DIR$/CLI/pom.xml" />
+        <option value="$PROJECT_DIR$/TicketingSystem-Back/pom.xml" />
       </list>
     </option>
   </component>
