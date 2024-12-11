@@ -1,14 +1,28 @@
-<div style="gap: 20px; padding: 20px 20px 20px; margin-left:17px;
-  border-radius: 0.5rem; box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); overflow-y: auto;
-  width: 420px; height: 550px; background-color: rgba(30,41,59)">
+<div style="gap: 20px; padding: 20px; margin-left: 17px; border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); overflow-y: auto; width: 420px; height: 550px;
+  background-color: rgba(30, 41, 59); color: white;">
 
-  <div style="display: flex; justify-content: space-between; align-items: center; font-size: large;
-  font-weight: normal; padding: 10px 10px 30px; color: white;">Ticket Pool</div>
+  <div style="display: flex; justify-content: space-between; align-items: center;
+    font-size: 18px; font-weight: bold; padding: 1px 1px 7px;border-bottom: 1px solid rgba(255, 255, 255, 0.2);">
+    Transaction Logs
+  </div>
 
-<!--  <div *ngFor="let log of logs">-->
-<!--    {{ log }}-->
-<!--  </div>-->
-
-
-
+  <div style="background-color: rgba(0, 0, 0, 0.8); padding: 15px; border-radius: 0.5rem;
+    margin-top: 10px; height: 465px; overflow-y: auto;">
+    <div *ngFor="let log of logs" style="margin-bottom: 10px; padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 0.5rem;">
+      <p style="font-size: 12px; margin: 4px 0;">
+        <strong>Time: </strong>{{ log.time }}
+      </p>
+      <p style="font-size: 12px; margin: 4px 0;">
+        <strong>Actor: </strong>{{ log.actor }}
+      </p>
+      <p style="font-size: 12px; margin: 4px 0;">
+        <strong>Action: </strong>{{ log.action }}
+      </p>
+      <p style="font-size: 12px; margin: 4px 0;">
+        <strong>Ticket Pool Size: </strong>{{ log.ticketPoolSize }}
+      </p>
+    </div>
+  </div>
 </div>

@@ -2,9 +2,11 @@ package com.w2053115.Sajitha.RealtimeTicketingSystem.service.shared;
 
 
 import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Ticket;
+import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.TransactionLogsService;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +18,10 @@ import java.util.concurrent.locks.ReentrantLock;
 @Service
 @Data
 public class TicketPool {
+
+    @Autowired
+    TransactionLogsService transactionLogsService;
+
     private static final Logger logger = LoggerFactory.getLogger(TicketPool.class);
 
     private final List<Ticket> ticketPool = Collections.synchronizedList(new ArrayList<>());
@@ -53,6 +59,10 @@ public class TicketPool {
             while(totalTickets + noOfTickets > maxTicketCapacity) {
                 logger.info("Vendor {} is waiting for tickets to be purchased." +
                         " Total Tickets : {}", vendorId, totalTickets);
+
+                transactionLogsService.addRealtime("Vendor " + vendorId,
+                        "is waiting for tickets to be purchased", totalTickets);
+
                 ticketsRemoved.await(); //Pausing the thread until there's space
             }
             //Adding tickets to the list
@@ -64,6 +74,13 @@ public class TicketPool {
             totalAddedTickets += noOfTickets;
             logger.info("Vendor {} added {} tickets. Total Tickets : {}",
                     vendorId, noOfTickets, totalTickets);
+
+            transactionLogsService.addRealtime("Vendor " + vendorId,
+                    "added " + noOfTickets + " tickets", totalTickets);
+
+            transactionLogsService.addDatabase("Vendor " + vendorId,
+                    "added", noOfTickets);
+
             ticketsAdded.signalAll(); //Notifying customer threads
         }
         catch (InterruptedException e) {
@@ -82,9 +99,16 @@ public class TicketPool {
                 if (priority) {
                     logger.info("[Priority] Customer {} is waiting for tickets to be added." +
                             " Total Tickets : {}", customerId, totalTickets);
+
+                    transactionLogsService.addRealtime("[Priority Customer ] " + customerId,
+                            "is waiting for tickets to be added ", totalTickets);
+
                 } else {
                     logger.info("Customer {} is waiting for tickets to be added." +
                             " Total Tickets : {}", customerId, totalTickets);
+
+                    transactionLogsService.addRealtime("Customer " + customerId,
+                            "is waiting for tickets to be added ", totalTickets);
                 }
                 ticketsAdded.await(); //Pausing the thread until there's more tickets
             }
@@ -96,9 +120,21 @@ public class TicketPool {
             if (priority) {
                 logger.info("[Priority] Customer {} purchased {} tickets. Total Tickets : {}",
                         customerId, noOfTickets, totalTickets);
+
+                transactionLogsService.addRealtime("[Priority] Customer " + customerId,
+                        "purchased " + noOfTickets + " tickets", totalTickets);
+
+                transactionLogsService.addDatabase("[Priority] Customer" + customerId,
+                        "purchased", noOfTickets);
             } else {
                 logger.info("Customer {} purchased {} tickets. Total Tickets : {}",
                         customerId, noOfTickets, totalTickets);
+
+                transactionLogsService.addRealtime("Customer " + customerId,
+                        "purchased " + noOfTickets + " tickets", totalTickets);
+
+                transactionLogsService.addDatabase("Customer" + customerId,
+                        "purchased", noOfTickets);
             }
 
             ticketsRemoved.signalAll(); //Notifying vendor threads

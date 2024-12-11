@@ -1,6 +1,7 @@
 package com.w2053115.Sajitha.RealtimeTicketingSystem.service.implementation;
 
 import com.w2053115.Sajitha.RealtimeTicketingSystem.model.Configuration;
+import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.TransactionLogsService;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.shared.SystemState;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.shared.TicketPool;
 import com.w2053115.Sajitha.RealtimeTicketingSystem.service.interfaces.CustomerService;
@@ -27,6 +28,9 @@ public class SystemServiceImpl implements SystemService {
 
     @Autowired
     CustomerService customerService;
+
+    @Autowired
+    TransactionLogsService transactionLogsService;
 
     @Override
     public void initializer() {
@@ -91,6 +95,8 @@ public class SystemServiceImpl implements SystemService {
             ticketPool.resetTicketpool();
             vendorService.resetVendors();
             customerService.resetCustomers();
+            transactionLogsService.resetLogs();
+
             SystemState.setState(SystemState.STOPPED);
             initializer();
             logger.info("Application reset");

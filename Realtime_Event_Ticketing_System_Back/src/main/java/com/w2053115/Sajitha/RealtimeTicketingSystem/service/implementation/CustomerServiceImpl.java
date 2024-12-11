@@ -123,7 +123,7 @@ public class CustomerServiceImpl implements CustomerService {
 
                 int customerId = customerObjectList.getLast().getCustomerId();
 
-                customerRepo.delete(customerRepo.findFirstByOrderByCreatedDesc());
+                customerRepo.delete(customerRepo.findFirstByPriorityFalseOrderByCreatedDesc());
 
                 //Delete customer object and thread
                 customerThreadList.getLast().interrupt();

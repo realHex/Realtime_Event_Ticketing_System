@@ -57,6 +57,7 @@ export class MasterControlService implements OnInit{
     return this.customerNo.getValue();
   }
 
+  //Supposed to implement in controls top-bar
   getPriorityCustomers(): number {
     return this.priorityCustomerNo.getValue();
   }
