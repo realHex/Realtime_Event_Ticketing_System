@@ -81,6 +81,7 @@ export class ControlsTopbarComponent implements OnInit{
         this.masterService.updateSystemState();
         this.masterService.updateVendors();
         this.masterService.updateCustomers();
+        this.masterService.updatePriorityCustomers();
         this.buttonLabel = 'Start';
         this.toaster.warning('Simulation Reset');
         console.log ('System reset');

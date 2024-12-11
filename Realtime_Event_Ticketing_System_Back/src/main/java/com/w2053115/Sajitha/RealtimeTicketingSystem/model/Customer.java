@@ -20,10 +20,10 @@ public class Customer {
 
     private String name;
     private String contactNo;
-    private int priority;
+    private boolean priority;
     private LocalDateTime created;
 
-    public Customer(int ticketsPerRetrieval, int releaseInterval, String name, String contactNo, int priority) {
+    public Customer(int ticketsPerRetrieval, int releaseInterval, String name, String contactNo, boolean priority) {
         this.ticketsPerRetrieval = ticketsPerRetrieval;
         this.releaseInterval = releaseInterval;
         this.name = name;

@@ -24,8 +24,8 @@ export class MasterControlService implements OnInit{
   ngOnInit(): void {
     this.updateCustomers();
     this.updateVendors();
+    this.updatePriorityCustomers();
     this.updateSystemState();
-    //this.updatePriorityCustomers();
   }
 
   updateCustomers(): void {
@@ -43,7 +43,7 @@ export class MasterControlService implements OnInit{
   }
 
   updatePriorityCustomers(): void {
-    this.http.get<number>('http://localhost:8080/api/customers/get-priority-customers').subscribe({
+    this.http.get<number>('http://localhost:8080/api/customer/get-priority-customer').subscribe({
       next: (priorityCustomerNo) => this.priorityCustomerNo.next(priorityCustomerNo),
       error: (e) => console.error('Error trying to get active Priority Customers', e),
     });
@@ -57,7 +57,9 @@ export class MasterControlService implements OnInit{
     return this.customerNo.getValue();
   }
 
-
+  getPriorityCustomers(): number {
+    return this.priorityCustomerNo.getValue();
+  }
 
   updateSystemState(): void {
     this.http.get<SystemState>('http://localhost:8080/api/system/state').subscribe({

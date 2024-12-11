@@ -33,12 +33,11 @@ public class VendorServiceImpl implements VendorService {
     Configuration configuration;
 
     @Override
-    public String createVendor() {
+    public void createVendor() {
 
-        if (configuration.getMaxTicketCapacity()  == 0 || configuration.getTotalTickets()  == 0 ||
-            configuration.getTicketReleaseRate()  == 0 || configuration.getCustomerRetrievalRate()  == 0) {
+        if (!isConfigurationLoaded()) {
             logger.warn("Load a Configuration before adding vendors");
-            return "Load a Configuration before adding vendors";
+            return;
         }
 
         //Add vendor details to the database
@@ -64,16 +63,13 @@ public class VendorServiceImpl implements VendorService {
         if (SystemState.getState()==SystemState.RUNNING || SystemState.getState()==SystemState.PAUSED) {
             vendorThread.start();
         }
-        for (Thread x : vendorThreadList) {
-            System.out.println(x.getName());
-        }
         noOfVendors++;
-        logger.info("Vendor " + vendorObject.getVendorId() + " created successfully");
-        return "Vendor " + vendorObject.getVendorId() + " created successfully";
+        logger.info("Vendor {} created successfully", vendorObject.getVendorId());
+
     }
 
     @Override
-    public String removeVendor(){
+    public void removeVendor(){
         try {
             if (vendorRepo!=null && !vendorObjectList.isEmpty() && !vendorThreadList.isEmpty()) {
                 int vendorId = vendorObjectList.getLast().getVendorId();
@@ -87,12 +83,10 @@ public class VendorServiceImpl implements VendorService {
 
                 noOfVendors--;
                 VendorRunner.reduceId();
-                logger.info("Vendor " + vendorId + " Removed");
-                return "Vendor " + vendorId + " Removed";
+                logger.info("Vendor {} Removed", vendorId);
             }
             else {
                 logger.warn("There's no vendors added");
-                return "Vendor objects are null";
             }
         }
         catch (NullPointerException e) {
@@ -139,6 +133,13 @@ public class VendorServiceImpl implements VendorService {
     @Override
     public int getVendors() {
         return noOfVendors;
+    }
+
+    private boolean isConfigurationLoaded() {
+        return (configuration.getMaxTicketCapacity() > 0 &&
+                configuration.getTotalTickets() > 0 &&
+                configuration.getTicketReleaseRate() > 0 &&
+                configuration.getCustomerRetrievalRate() > 0);
     }
 
 }

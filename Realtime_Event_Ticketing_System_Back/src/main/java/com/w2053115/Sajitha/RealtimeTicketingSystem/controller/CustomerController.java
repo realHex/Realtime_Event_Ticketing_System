@@ -14,16 +14,33 @@ public class CustomerController {
 
     @PostMapping(path = "/add-customer")
     public void addCustomer(){
-        customerService.createCustomer();
+        customerService.createCustomer(false);
     }
 
     @DeleteMapping(path = "/remove-customer")
     public void removeCustomer(){
-        customerService.removeCustomer();
+        customerService.removeCustomer(false);
     }
 
     @GetMapping(path = "/get-customer")
     public int getCustomer() {
         return customerService.getCustomers();
+    }
+
+
+
+    @PostMapping(path = "/add-priority-customer")
+    public void addPriorityCustomer(){
+        customerService.createCustomer(true);
+    }
+
+    @DeleteMapping(path = "/remove-priority-customer")
+    public void removePriorityCustomer(){
+        customerService.removeCustomer(true);
+    }
+
+    @GetMapping(path = "/get-priority-customer")
+    public int getPriorityCustomer() {
+        return customerService.getPriorityCustomers();
     }
 }

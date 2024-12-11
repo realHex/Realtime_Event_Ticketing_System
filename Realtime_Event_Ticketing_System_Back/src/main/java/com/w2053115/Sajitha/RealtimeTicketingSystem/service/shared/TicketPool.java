@@ -74,13 +74,18 @@ public class TicketPool {
             lock.unlock();
         }
     }
-    public void removeTicket (int customerId, int noOfTickets) {
+    public void removeTicket (int customerId, int noOfTickets, boolean priority) {
         lock.lock();
         try {
             //Checking if there are enough tickets to purchase
             while (totalTickets - noOfTickets < 0) {
-                logger.info("Customer {} is waiting for tickets to be added." +
-                        " Total Tickets : {}", customerId, totalTickets);
+                if (priority) {
+                    logger.info("[Priority] Customer {} is waiting for tickets to be added." +
+                            " Total Tickets : {}", customerId, totalTickets);
+                } else {
+                    logger.info("Customer {} is waiting for tickets to be added." +
+                            " Total Tickets : {}", customerId, totalTickets);
+                }
                 ticketsAdded.await(); //Pausing the thread until there's more tickets
             }
             //Removing tickets from the list
@@ -88,12 +93,23 @@ public class TicketPool {
 
             totalTickets -= noOfTickets;
             totalPurchasedTickets += noOfTickets;
-            logger.info("Customer {} purchased {} tickets. Total Tickets : {}",
-                    customerId, noOfTickets, totalTickets);
+            if (priority) {
+                logger.info("[Priority] Customer {} purchased {} tickets. Total Tickets : {}",
+                        customerId, noOfTickets, totalTickets);
+            } else {
+                logger.info("Customer {} purchased {} tickets. Total Tickets : {}",
+                        customerId, noOfTickets, totalTickets);
+            }
+
             ticketsRemoved.signalAll(); //Notifying vendor threads
         }
         catch (InterruptedException e) {
-            logger.error("Customer {} encountered error while purchasing ticket", customerId);
+            if (priority) {
+                logger.error("[Priority] Customer {} encountered error while purchasing ticket", customerId);
+            } else {
+                logger.error("Customer {} encountered error while purchasing ticket", customerId);
+            }
+
             Thread.currentThread().interrupt();
         }
         finally {

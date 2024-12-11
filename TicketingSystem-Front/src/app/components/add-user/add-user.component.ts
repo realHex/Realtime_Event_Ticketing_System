@@ -32,8 +32,14 @@ export class AddUserComponent implements OnInit{
       this.activeCustomers = customerNo;
     });
 
+    this.masterService.priorityCustomerNo$.subscribe((customerNo) => {
+      console.log(customerNo);
+      this.activePriorityCustomers = customerNo;
+    });
+
     this.masterService.updateVendors();
     this.masterService.updateCustomers();
+    this.masterService.updatePriorityCustomers();
   }
 
   addVendor() {
@@ -96,5 +102,34 @@ export class AddUserComponent implements OnInit{
     });
   }
 
+  addPriorityCustomer() {
+
+    this.activePriorityCustomers++;
+
+    this.http.post("http://localhost:8080/api/customer/add-priority-customer",null).subscribe({
+      next: (response) => {
+        this.masterService.updatePriorityCustomers();
+        console.log ('Priority Customer added successfully');
+      },
+      error: (e) => {
+        console.error('Error adding priority customer', e);
+      }
+    });
+  }
+
+  removePriorityCustomer() {
+
+    this.activePriorityCustomers--;
+
+    this.http.delete("http://localhost:8080/api/customer/remove-priority-customer").subscribe({
+      next: (response) => {
+        this.masterService.updatePriorityCustomers();
+        console.log ('Priority Customer removed successfully');
+      },
+      error: (e) => {
+        console.error('Error removed priority customer', e);
+      }
+    });
+  }
 
 }

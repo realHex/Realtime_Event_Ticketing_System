@@ -27,10 +27,10 @@
     <div style="font-size: small;">Active Priority Customers</div> <br>
     <div style="font-size: x-large; font-weight: bold;">{{activePriorityCustomers}}</div>
     <div style="display: flex; justify-content: center; align-items: center; gap: 5px; margin-top: 5px;">
-      <p-button icon="pi pi-minus" [rounded]="true" severity="danger"
+      <p-button (click)="removePriorityCustomer()" icon="pi pi-minus" [rounded]="true" severity="danger"
                 [disabled]="activePriorityCustomers <= 0" size="small"></p-button>
       <span style="font-size: medium; font-weight: bold;">Priority Customers</span>
-      <p-button icon="pi pi-plus" [rounded]="true" severity="danger"
+      <p-button (click)="addPriorityCustomer()" icon="pi pi-plus" [rounded]="true" severity="danger"
                 size="small" ></p-button>
     </div>
   </div>

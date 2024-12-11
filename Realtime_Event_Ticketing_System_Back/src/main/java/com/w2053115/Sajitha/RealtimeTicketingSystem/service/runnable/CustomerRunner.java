@@ -10,15 +10,23 @@ public class CustomerRunner implements Runnable{
     private static final Logger logger = LoggerFactory.getLogger(CustomerRunner.class);
 
     private int customerId;
+    private int priorityCustomerId;
+
+    static int customerNo = 1;
+    static int priorityCustomerNo = 1;
+
     private int ticketsPerRetrieval;
     private int retrievalInterval;
-    private int priority;
-    static int customerNo = 1;
+    private boolean priority;
     private final TicketPool ticketPool;
     private static volatile boolean paused = false;
 
-    public CustomerRunner (int ticketsPerRetrieval, int releaseInterval, int priority, TicketPool ticketPool) {
-        this.customerId = customerNo++;
+    public CustomerRunner (int ticketsPerRetrieval, int releaseInterval, boolean priority, TicketPool ticketPool) {
+        if (priority) {
+            this.priorityCustomerId = priorityCustomerNo++;
+        } else {
+            this.customerId = customerNo++;
+        }
         this.ticketsPerRetrieval = ticketsPerRetrieval;
         this.retrievalInterval = releaseInterval;
         this.priority = priority;
@@ -31,17 +39,29 @@ public class CustomerRunner implements Runnable{
             while (true){
                 while (!paused) {
                     if (Thread.currentThread().isInterrupted())  {
-                        logger.info("Customer thread " + customerId + " has been interrupted");
+                        if (priority) {
+                            logger.info("[Priority] Customer thread " + priorityCustomerId + " has been interrupted");
+                        } else {
+                            logger.info("Customer thread " + customerId + " has been interrupted");
+                        }
                         return;
                     }
-                    ticketPool.removeTicket(customerId, ticketsPerRetrieval);
+                    if (priority) {
+                        ticketPool.removeTicket(priorityCustomerId, ticketsPerRetrieval, priority);
+                    } else {
+                        ticketPool.removeTicket(customerId, ticketsPerRetrieval, priority);
+                    }
                     Thread.sleep(retrievalInterval * 1000L);
                 }
             }
         }
         catch (InterruptedException e){
             Thread.currentThread().interrupt();
-            logger.error("Vendor " + customerId + " encountered error in thread.");
+            if (priority) {
+                logger.info("[Priority] Customer " + priorityCustomerId + " encountered error in thread.");
+            } else {
+                logger.info("Customer " + customerId + " encountered error in thread.");
+            }
         }
     }
 
@@ -54,9 +74,14 @@ public class CustomerRunner implements Runnable{
 
     public static void resetCustomerIds(){
         customerNo = 1;
+        priorityCustomerNo = 1;
     }
 
     public static void reduceId(){
         customerNo--;
+    }
+
+    public static void reducePriorityId(){
+        priorityCustomerNo--;
     }
 }
