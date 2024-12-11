@@ -5,7 +5,7 @@ Realtime Event Ticketing System that simulates vendors and customers
 
 <hr>
 
-##  Overview
+## 👋 Overview
 
 This application simulates how Vendors add tickets and Customers purchase 
 tickets from a shared ticketpool.
