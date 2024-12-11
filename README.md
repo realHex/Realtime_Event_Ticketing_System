@@ -39,7 +39,7 @@ The multi-threading is handled using core Java.
 ### ✅Prerequisites
 
 **Java Development Kit (JDK) 🛠️**  : `Version: ^21.0.2` </br>
-**Node.js ** : `Version: Latest` </br>
+**Node.js** : `Version: Latest` </br>
 **npm 📦** 	: `Version: >= 8.x.x` </br>
 **Angular CLI 🅰️** : `Version: "^18.2.0"` </br>
 **Maven**: `Version: ^3.9.9` </br>
