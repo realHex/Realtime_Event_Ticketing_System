@@ -109,11 +109,11 @@ To run the project, execute the following command:
 
 ---
 
-## API Documentation
+## 📚 API Documentation
 
 ---
 
-### 📚 Configuration
+###  Configuration
 
 1. **Load Configuration**
     - **Endpoint**: `GET /api/configuration/load-configuration`
