@@ -1,11 +1,11 @@
-# Realtime Event Ticketing System Simulation
+# 🎟️ Realtime Event Ticketing System Simulation
 Realtime Event Ticketing System that simulates vendors and customers
 
 <br>
 
 <hr>
 
-## 👋 Overview
+## 📖 Overview
 
 This application simulates how Vendors add tickets and Customers purchase 
 tickets from a shared ticketpool.
@@ -13,7 +13,7 @@ The multi-threading is handled using core Java.
 
 ---
 
-##  Features
+## ✨ Features
 
 - Sets system parameters needed for the program.
 - Shows ticket status and transaction logs.
@@ -34,14 +34,14 @@ The multi-threading is handled using core Java.
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
-### Prerequisites
+### ✅Prerequisites
 
-**Java Development Kit (JDK)**  : `Version: ^21.0.2` </br>
-**Node.js** : `Version: Latest` </br>
-**npm** 	: `Version: >= 8.x.x` </br>
-**Angular CLI** : `Version: "^18.2.0"` </br>
+**Java Development Kit (JDK) 🛠️**  : `Version: ^21.0.2` </br>
+**Node.js ** : `Version: Latest` </br>
+**npm 📦** 	: `Version: >= 8.x.x` </br>
+**Angular CLI 🅰️** : `Version: "^18.2.0"` </br>
 **Maven**: `Version: ^3.9.9` </br>
 **MongoDB** : `Version: any`
 
@@ -79,7 +79,7 @@ The multi-threading is handled using core Java.
 
 
 
-### Usage
+### 📘 Usage
 
 To run the project, execute the following command:
 
@@ -113,7 +113,7 @@ To run the project, execute the following command:
 
 ---
 
-### Configuration
+### 📚 Configuration
 
 1. **Load Configuration**
     - **Endpoint**: `GET /api/configuration/load-configuration`
@@ -250,7 +250,7 @@ To run the project, execute the following command:
       ```
 ---
 
-## Acknowledgements
+## 🙏 Acknowledgements
 
 I would like to thank my mom, dad, and sister for aiding me in a lot of ways during the period
 of me doing this coursework.
