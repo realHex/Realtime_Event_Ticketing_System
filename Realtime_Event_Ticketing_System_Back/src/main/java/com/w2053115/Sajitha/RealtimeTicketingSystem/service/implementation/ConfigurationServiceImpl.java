@@ -52,23 +52,17 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 
     @Override
     public String saveConfiguration(Configuration configuration) {
-        if (SystemState.getState()==SystemState.RUNNING){
-            logger.info("Unable to save configuration while application is running");
-            return "Unable to save configuration while application is running";
+        try {
+            File file = new File(filePath);
+            FileWriter writeFile = new FileWriter(file);
+            mapper.writeValue(writeFile,configuration);
+            loadConfiguration();
+            logger.info("Configuration file saved");
+            return "Configuration file saved";
         }
-        else {
-            try {
-                File file = new File(filePath);
-                FileWriter writeFile = new FileWriter(file);
-                mapper.writeValue(writeFile,configuration);
-                loadConfiguration();
-                logger.info("Configuration file saved");
-                return "Configuration file saved";
-            }
-            catch (Exception e){
-                logger.error("Error writing to the file");
-                throw new RuntimeException();
-            }
+        catch (Exception e){
+            logger.error("Error writing to the file");
+            throw new RuntimeException();
         }
     }
 

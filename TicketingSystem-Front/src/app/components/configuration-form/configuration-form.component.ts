@@ -53,14 +53,16 @@ export class ConfigurationFormComponent implements OnInit{
       this.http.get<IConfiguration>("http://localhost:8080/api/configuration/load-configuration").subscribe((config:IConfiguration)=>{
         if (config!=null){
           this.configuration = config;
+          this.toaster.success('Configuration Loaded')
         }
       })
-      this.toaster.success('Configuration Loaded')
-    } else if(this.systemState === SystemState.RUNNING) {
-      this.toaster.error('Unable to load while simulation running', 'Failed to load configuration')
-    } else {
-      this.toaster.error('Unable to load while simulation paused. Reset First', 'Failed to load configuration')
     }
+  }
+
+  saveConfiguration() {
+    this.http.post("http://localhost:8080/api/configuration/save-configuration", this.configuration)
+      .subscribe();
+    this.toaster.success('Configuration Saved')
   }
 
   validateTotalTickets(): string {
@@ -121,23 +123,5 @@ export class ConfigurationFormComponent implements OnInit{
       this.validateMaxTicketCapacity() === 'Enter maximum tickets that can be in the ticketpool at a given time'
     );
   }
-
-
-  saveConfiguration() {
-    if (this.systemState === SystemState.STOPPED) {
-      this.http.post("http://localhost:8080/api/configuration/save-configuration", this.configuration)
-        .subscribe();
-      this.toaster.success('Configuration Saved')
-    } else if(this.systemState === SystemState.RUNNING) {
-      this.toaster.error('Unable to save while simulation running', 'Failed to save configuration')
-    } else {
-      this.toaster.error('Unable to save while simulation paused. Reset First', 'Failed to save configuration')
-    }
-
-
-
-    }
-
-
 
 }

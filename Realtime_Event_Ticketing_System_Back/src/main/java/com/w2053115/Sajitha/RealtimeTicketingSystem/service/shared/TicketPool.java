@@ -25,8 +25,8 @@ public class TicketPool {
     private int totalTickets;
     private int maxTicketCapacity;
 
-    private int totalAddedTickets;
-    private int totalSoldTickets;
+    private int totalAddedTickets = 0;
+    private int totalPurchasedTickets = 0;
 
 
     public void initializeTicketpool(int totalTickets, int maxTicketCapacity) {
@@ -37,17 +37,13 @@ public class TicketPool {
             Ticket ticket = new Ticket(1,"G17","Arcane", 2000);
             ticketPool.add(ticket);
         }
-
-        totalAddedTickets = 0;
-        totalSoldTickets = 0;
-
     }
     public void resetTicketpool(){
         ticketPool.clear();
         totalTickets = 0;
         maxTicketCapacity = 0;
         totalAddedTickets = 0;
-        totalSoldTickets = 0;
+        totalPurchasedTickets = 0;
     }
 
     public void addTicket (int vendorId, int noOfTickets) {
@@ -65,7 +61,7 @@ public class TicketPool {
                 ticketPool.add(ticket);
             }
             totalTickets += noOfTickets;
-            totalAddedTickets += 1;
+            totalAddedTickets += noOfTickets;
             logger.info("Vendor {} added {} tickets. Total Tickets : {}",
                     vendorId, noOfTickets, totalTickets);
             ticketsAdded.signalAll(); //Notifying customer threads
@@ -91,7 +87,7 @@ public class TicketPool {
             ticketPool.subList(0,noOfTickets).clear();
 
             totalTickets -= noOfTickets;
-            totalSoldTickets += 1;
+            totalPurchasedTickets += noOfTickets;
             logger.info("Customer {} purchased {} tickets. Total Tickets : {}",
                     customerId, noOfTickets, totalTickets);
             ticketsRemoved.signalAll(); //Notifying vendor threads

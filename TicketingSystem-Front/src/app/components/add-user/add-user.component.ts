@@ -37,6 +37,9 @@ export class AddUserComponent implements OnInit{
   }
 
   addVendor() {
+
+    this.activeVendors++;
+
     this.http.post("http://localhost:8080/api/vendor/add-vendor",null).subscribe({
       next: (response) => {
         this.masterService.updateVendors();

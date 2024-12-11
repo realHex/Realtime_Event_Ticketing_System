@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit, ViewChild} from '@angular/core';
 import {ChartModule} from 'primeng/chart';
 import {PrimeTemplate} from 'primeng/api';
 import {ProgressBarModule} from 'primeng/progressbar';
+import {CountPollingService} from '../../services/polling/count-polling/count-polling.service';
+import {Chart} from 'chart.js';
 
 @Component({
   selector: 'app-chart',
@@ -16,8 +18,13 @@ import {ProgressBarModule} from 'primeng/progressbar';
 })
 export class ChartComponent implements OnInit {
   data: any;
-
   options: any;
+
+  time: number = 0;
+
+  polling = inject(CountPollingService);
+
+  @ViewChild('chart') chart: Chart | undefined;
 
   ngOnInit() {
     const documentStyle = getComputedStyle(document.documentElement);
@@ -25,26 +32,27 @@ export class ChartComponent implements OnInit {
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
+
     this.data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels: [], //Time Interval
       datasets: [
         {
           label: 'Tickets Added',
-          data: [65, 59, 80, 81, 56, 55, 40],
+          data: [],
           fill: false,
           tension: 0.4,
-          borderColor: documentStyle.getPropertyValue('--green-500')
+          borderColor: documentStyle.getPropertyValue('--green-500'),
         },
         {
-          label: 'Third Dataset',
-          data: [12, 51, 62, 33, 21, 62, 45],
+          label: 'Tickets Purchased',
+          data: [],
           fill: false,
           borderColor: documentStyle.getPropertyValue('--orange-500'),
           tension: 0.4,
-          backgroundColor: 'rgba(255,167,38,0.2)'
-        }
-      ]
+        },
+      ],
     };
+
 
     this.options = {
       maintainAspectRatio: false,
@@ -52,28 +60,70 @@ export class ChartComponent implements OnInit {
       plugins: {
         legend: {
           labels: {
-            color: textColor
-          }
-        }
+            color: textColor,
+          },
+        },
       },
       scales: {
         x: {
+          title: {
+            display: true,
+            text: 'Time (seconds)',
+            color: textColor,
+          },
           ticks: {
-            color: textColorSecondary
+            color: textColorSecondary,
           },
           grid: {
-            color: surfaceBorder
-          }
+            color: surfaceBorder,
+          },
         },
         y: {
+          title: {
+            display: true,
+            text: 'Number of Tickets',
+            color: textColor,
+          },
           ticks: {
-            color: textColorSecondary
+            color: textColorSecondary,
           },
           grid: {
-            color: surfaceBorder
-          }
-        }
-      }
+            color: surfaceBorder,
+          },
+        },
+      },
     };
+
+    this.startPolling();
+  }
+
+  private startPolling(): void {
+    this.polling.pollAddedTickets(1000).subscribe((addedTickets) => {
+      this.updateDataset(this.data.datasets[0].data, addedTickets);
+    });
+
+    this.polling.pollPurchasedTickets(1000).subscribe((purchasedTickets) => {
+      this.updateDataset(this.data.datasets[1].data, purchasedTickets);
+    });
+  }
+
+  private updateDataset(dataset: number[], newData: number): void {
+    this.time++;
+
+
+    dataset.push(newData);
+
+    if (dataset.length > 10) {
+      dataset.shift();
+    }
+
+    if (this.data.labels.length < dataset.length) {
+      this.data.labels.push(`${this.time}s`);
+    } else {
+      this.data.labels.shift();
+      this.data.labels.push(`${this.time}s`);
+    }
+
+    this.chart?.update();
   }
 }
