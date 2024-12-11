@@ -18,14 +18,15 @@ import java.util.ArrayList;
 public class CustomerServiceImpl implements CustomerService {
     private static final Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
 
-    //Normal Customer
+    //Arrays to store normal customer objects and threads
     private final ArrayList<Thread> customerThreadList = new ArrayList<>();
     private final ArrayList<CustomerRunner> customerObjectList = new ArrayList<>();
 
-    //Priority Customer
+    //Arrays to store priority customer objects and threads
     private final ArrayList<Thread> priorityCustomerThreadList = new ArrayList<>();
     private final ArrayList<CustomerRunner> priorityCustomerObjectList = new ArrayList<>();
 
+    //Storing number of customers
     private int noOfCustomers = 0;
     private int noOfPriorityCustomers = 0;
 
@@ -40,6 +41,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void createCustomer(boolean priority) {
+        //Checking if a configuration is loaded before adding customers
         if (!isConfigurationLoaded()) {
             logger.warn("Load a Configuration before adding customers");
             return;
@@ -82,10 +84,12 @@ public class CustomerServiceImpl implements CustomerService {
             customerThreadList.add(customerThread);
         }
 
+        //Starting the created thread if the system is already running/paused
         if (SystemState.getState()==SystemState.RUNNING || SystemState.getState()==SystemState.PAUSED) {
             customerThread.start();
         }
 
+        //Displaying relevant logs depending on customer type
         if (priority) {
             noOfPriorityCustomers++;
             logger.info("[Priority] Customer {} created successfully", customerObject.getPriorityCustomerId());
@@ -97,12 +101,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void removeCustomer(boolean priority) {
-        if (priority &&  customerRepo != null && !priorityCustomerObjectList.isEmpty() &&
-                !priorityCustomerThreadList.isEmpty()) {
+        //Checking customer type and if there actually are customers
+        if (priority && !priorityCustomerObjectList.isEmpty() && !priorityCustomerThreadList.isEmpty()) {
             try {
-
+                //Getting id to display it in logs
                 int priorityCustomerId = priorityCustomerObjectList.getLast().getPriorityCustomerId();
 
+                //Deleting customer from the database
                 customerRepo.delete(customerRepo.findFirstByPriorityTrueOrderByCreatedDesc());
 
                 //Delete priority customer object and thread
@@ -111,18 +116,19 @@ public class CustomerServiceImpl implements CustomerService {
                 priorityCustomerThreadList.removeLast();
 
                 noOfPriorityCustomers--;
-                CustomerRunner.reducePriorityId();
+                CustomerRunner.reducePriorityId();  //Reducing priority customer id in runnable class
                 logger.info("[Priority] Customer {} Removed", priorityCustomerId);
             } catch (NullPointerException e) {
                 logger.error("No records for priority customer", e);
             }
         }
-
-        if (!priority && customerRepo != null && !customerObjectList.isEmpty() && !customerThreadList.isEmpty()) {
+        //Checking customer type and if there actually are customers
+        if (!priority && !customerObjectList.isEmpty() && !customerThreadList.isEmpty()) {
             try {
-
+                //Getting id to display it in logs
                 int customerId = customerObjectList.getLast().getCustomerId();
 
+                //Deleting customer from the database
                 customerRepo.delete(customerRepo.findFirstByPriorityFalseOrderByCreatedDesc());
 
                 //Delete customer object and thread
@@ -131,7 +137,7 @@ public class CustomerServiceImpl implements CustomerService {
                 customerThreadList.removeLast();
 
                 noOfCustomers--;
-                CustomerRunner.reduceId();
+                CustomerRunner.reduceId(); //Reducing customer id in runnable class
                 logger.info("Customer {} Removed", customerId);
 
             } catch (NullPointerException e) {
@@ -142,6 +148,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void startCustomers() {
+        //Iterating through thread lists and starting each thread
         for (Thread thread : priorityCustomerThreadList) {
             thread.start();
         }
@@ -153,34 +160,38 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void stopCustomers() {
+        //Changing static variable 'paused' in Runnable class to true
         CustomerRunner.stop();
         logger.info("Customers stopped");
     }
 
     @Override
     public void resumeCustomers(){
+        //Changing static variable 'paused' in Runnable class to false
         CustomerRunner.resume();
     }
 
     @Override
     public void resetCustomers() {
+        //Checking if customer lists are not empty
         if (!customerObjectList.isEmpty() && !customerThreadList.isEmpty()) {
             for (Thread thread : customerThreadList) {
-                thread.interrupt();
+                thread.interrupt(); //Iterating and stopping all threads
             }
-
+            //Clearing both object and thread lists
             customerObjectList.clear();
             customerThreadList.clear();
         }
+        //Checking if priority customer lists are not empty
         if (!priorityCustomerObjectList.isEmpty() && !priorityCustomerThreadList.isEmpty()) {
             for (Thread thread : priorityCustomerThreadList) {
-                thread.interrupt();
+                thread.interrupt(); //Iterating and stopping all threads
             }
-
+            //Clearing both object and thread lists
             priorityCustomerObjectList.clear();
             priorityCustomerThreadList.clear();
         }
-        CustomerRunner.resume();
+        CustomerRunner.resume(); //Changing 'pause' variable to false
         CustomerRunner.resetCustomerIds();
         noOfCustomers = 0;
         noOfPriorityCustomers = 0;

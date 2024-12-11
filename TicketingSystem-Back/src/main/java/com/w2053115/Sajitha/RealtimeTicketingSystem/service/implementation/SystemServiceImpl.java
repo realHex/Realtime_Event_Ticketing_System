@@ -41,17 +41,16 @@ public class SystemServiceImpl implements SystemService {
             logger.error("Error while initializing");
             throw e;
         }
-        //initialize a ticketpool
-        //make ticketpool
-        //reset and display no of vendors and customers
     }
 
     @Override
     public String startApplication() {
+
         if (vendorService.getVendors() <= 0 && customerService.getCustomers() <=0) {
             logger.warn("Add some vendors or customers before starting");
             return "Add some vendors or customers before starting";
         }
+
         if (SystemState.getState()==SystemState.RUNNING) {
             logger.info("Application already running");
             return "Application already running";

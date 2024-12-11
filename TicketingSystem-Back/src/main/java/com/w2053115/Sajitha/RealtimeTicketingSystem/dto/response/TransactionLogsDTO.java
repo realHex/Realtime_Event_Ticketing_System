@@ -13,6 +13,7 @@ import java.time.temporal.ChronoUnit;
 @Data
 public class TransactionLogsDTO {
 
+    //Sending these parameters to the frontend to display logs
     private String time;
     private String actor;
     private String action;

@@ -1,19 +1,19 @@
-# Realtime Event Ticketing System Simulation
+# 🎟️ Realtime Event Ticketing System Simulation
 Realtime Event Ticketing System that simulates vendors and customers
 
 <br>
 
 <hr>
 
-##  Overview
+## 📖 Overview
 
-This application simulates how Vendors add tickets and Customers purchase 
+This application simulates how Vendors add tickets and Customers purchase
 tickets from a shared ticketpool.
 The multi-threading is handled using core Java.
 
 ---
 
-##  Features
+## ✨ Features
 
 - Sets system parameters needed for the program.
 - Shows ticket status and transaction logs.
@@ -34,14 +34,14 @@ The multi-threading is handled using core Java.
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
-### Prerequisites
+### ✅Prerequisites
 
-**Java Development Kit (JDK)**  : `Version: ^21.0.2` </br>
-**Node.js** : `Version: Latest` </br>
-**npm** 	: `Version: >= 8.x.x` </br>
-**Angular CLI** : `Version: "^18.2.0"` </br>
+**Java Development Kit (JDK) 🛠️**  : `Version: ^21.0.2` </br>
+**Node.js ** : `Version: Latest` </br>
+**npm 📦** 	: `Version: >= 8.x.x` </br>
+**Angular CLI 🅰️** : `Version: "^18.2.0"` </br>
 **Maven**: `Version: ^3.9.9` </br>
 **MongoDB** : `Version: any`
 
@@ -79,7 +79,7 @@ The multi-threading is handled using core Java.
 
 
 
-### Usage
+### 📘 Usage
 
 To run the project, execute the following command:
 
@@ -109,74 +109,74 @@ To run the project, execute the following command:
 
 ---
 
-## API Documentation
+## 📚 API Documentation
 
 ---
 
-### Configuration
+###  Configuration
 
 1. **Load Configuration**
-    - **Endpoint**: `GET /api/configuration/load-configuration`
-    - **Description**: Retrieves the current configuration settings.
-    - **Response**:
-      ```json
-      {
-         "totalTickets": 50,
-         "ticketReleaseRate": 20,
-         "customerRetrievalRate": 4,
-         "maxTicketCapacity": 100
-      }
+   - **Endpoint**: `GET /api/configuration/load-configuration`
+   - **Description**: Retrieves the current configuration settings.
+   - **Response**:
+     ```json
+     {
+        "totalTickets": 50,
+        "ticketReleaseRate": 20,
+        "customerRetrievalRate": 4,
+        "maxTicketCapacity": 100
+     }
 
 2. **Save Configuration**
-    - **Endpoint**: `POST /api/configuration/save-configuration`
-    - **Description**: Saves user input.
-    - **Request Body**:
-      ```json
-      {
-        "totalTickets": 50,
-        "ticketReleaseRate": 1,
-        "customerRetrievalRate": 2,
-        "maxTicketCapacity": 100
-      }
-      ```
+   - **Endpoint**: `POST /api/configuration/save-configuration`
+   - **Description**: Saves user input.
+   - **Request Body**:
+     ```json
+     {
+       "totalTickets": 50,
+       "ticketReleaseRate": 1,
+       "customerRetrievalRate": 2,
+       "maxTicketCapacity": 100
+     }
+     ```
 
 ---
 
 ### System
 
 1. **Start System**
-    - **Endpoint**: `POST /api/system/start`
-    - **Description**: Starts the system.
+   - **Endpoint**: `POST /api/system/start`
+   - **Description**: Starts the system.
 
 2. **Stop System**
-    - **Endpoint**: `POST /api/system/stop`
-    - **Description**: Stops the system.
+   - **Endpoint**: `POST /api/system/stop`
+   - **Description**: Stops the system.
 
 3. **Reset System**
-    - **Endpoint**: `POST /api/system/reset`
-    - **Description**: Resets the system.
+   - **Endpoint**: `POST /api/system/reset`
+   - **Description**: Resets the system.
 
 4. **Get System State**
-    - **Endpoint**: `GET /api/system/state`
-    - **Description**: Retrieves the system state.
-    - **Response**: "RUNNING","PAUSED","STOPPED"
+   - **Endpoint**: `GET /api/system/state`
+   - **Description**: Retrieves the system state.
+   - **Response**: "RUNNING","PAUSED","STOPPED"
 
 ---
 
 ### Customer
 
 1. **Add Customer**
-    - **Endpoint**: `POST /api/customer/add-customer`
-    - **Description**: Adds a customer.
+   - **Endpoint**: `POST /api/customer/add-customer`
+   - **Description**: Adds a customer.
 
 2. **Remove Customer**
-    - **Endpoint**: `DELETE /api/customer/remove-customer`
-    - **Description**: Removes a customer.
+   - **Endpoint**: `DELETE /api/customer/remove-customer`
+   - **Description**: Removes a customer.
 
 3. **Get Customer Count**
-    - **Endpoint**: `GET /api/customer/get-customer`
-    - **Description**: Gets total customers in the system.
-    - **Response**: ex: 5 
+   - **Endpoint**: `GET /api/customer/get-customer`
+   - **Description**: Gets total customers in the system.
+   - **Response**: ex: 5
 
 4. **Add Priority Customer**
    - **Endpoint**: `POST /api/customer/add-priority-customer`
@@ -213,9 +213,9 @@ To run the project, execute the following command:
 ### Ticket Pool
 
 1. **Get Total Tickets**
-    - **Endpoint**: `GET /api/ticketpool/total-tickets`
-    - **Description**: Gets total tickets currently in the ticket pool.
-    - **Response**: ex: 76
+   - **Endpoint**: `GET /api/ticketpool/total-tickets`
+   - **Description**: Gets total tickets currently in the ticket pool.
+   - **Response**: ex: 76
 
 2. **Get Purchased Tickets**
    - **Endpoint**: `GET /api/ticketpool/purchased-tickets`
@@ -250,7 +250,7 @@ To run the project, execute the following command:
       ```
 ---
 
-## Acknowledgements
+## 🙏 Acknowledgements
 
 I would like to thank my mom, dad, and sister for aiding me in a lot of ways during the period
 of me doing this coursework.

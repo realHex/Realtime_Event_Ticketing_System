@@ -24,18 +24,22 @@ public class ConfigurationServiceImpl implements ConfigurationService {
     @Autowired
     Configuration config;
 
+    //To map values to the json
     private final ObjectMapper mapper = new ObjectMapper();
+    //Filepath and name of the json
     private final String filePath = "configuration.json";
 
+    //To display logs
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationServiceImpl.class);
 
     @Override
     public Configuration loadConfiguration() {
         try {
             File file = new File (filePath);
-            FileReader readFile = new FileReader(file);
+            FileReader readFile = new FileReader(file); //Reading from the file
+            //Using the mapper to map the json files to the configuration object
             config.updateConfiguration((mapper.readValue(readFile,Configuration.class)));
-            systemService.initializer();
+            systemService.initializer(); //Initializing ticketpool
             logger.info("Configuration loaded from existing file");
             return config;
         }
@@ -44,7 +48,6 @@ public class ConfigurationServiceImpl implements ConfigurationService {
             return null;
         }
         catch (IOException e){
-            //logger = "Error in the mapper."
             logger.error("Error mapping the file");
             return null;
         }
@@ -55,8 +58,8 @@ public class ConfigurationServiceImpl implements ConfigurationService {
         try {
             File file = new File(filePath);
             FileWriter writeFile = new FileWriter(file);
-            mapper.writeValue(writeFile,configuration);
-            loadConfiguration();
+            mapper.writeValue(writeFile,configuration); //Writing the object
+            loadConfiguration(); //Loading the saved configuration
             logger.info("Configuration file saved");
             return "Configuration file saved";
         }
@@ -66,6 +69,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
         }
     }
 
+    //To load values from file at startup
     @PostConstruct
     public void loadConfigurationAtStartup() {
         loadConfiguration();

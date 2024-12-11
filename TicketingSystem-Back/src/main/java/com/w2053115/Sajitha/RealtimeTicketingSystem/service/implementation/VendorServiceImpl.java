@@ -19,8 +19,10 @@ import java.util.ArrayList;
 public class VendorServiceImpl implements VendorService {
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationServiceImpl.class);
 
+    //Arrays to store vendor customer objects and threads
     private final ArrayList<Thread> vendorThreadList = new ArrayList<>();
     private final ArrayList<VendorRunner> vendorObjectList = new ArrayList<>();
+    //Storing number of vendors
     private int noOfVendors = 0;
 
     @Autowired
@@ -34,7 +36,7 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     public void createVendor() {
-
+        //Checking if a configuration is loaded before adding customers
         if (!isConfigurationLoaded()) {
             logger.warn("Load a Configuration before adding vendors");
             return;
@@ -60,6 +62,8 @@ public class VendorServiceImpl implements VendorService {
         //Creating vendor threads and storing it for accessing
         Thread vendorThread = new Thread(vendorObject);
         vendorThreadList.add(vendorThread);
+
+        //Starting the created thread if the system is already running/paused
         if (SystemState.getState()==SystemState.RUNNING || SystemState.getState()==SystemState.PAUSED) {
             vendorThread.start();
         }
@@ -71,7 +75,9 @@ public class VendorServiceImpl implements VendorService {
     @Override
     public void removeVendor(){
         try {
-            if (vendorRepo!=null && !vendorObjectList.isEmpty() && !vendorThreadList.isEmpty()) {
+            //Checking vendor type and if there actually are customers
+            if (!vendorObjectList.isEmpty() && !vendorThreadList.isEmpty()) {
+                //Getting id to display it in logs
                 int vendorId = vendorObjectList.getLast().getVendorId();
 
                 vendorRepo.delete(vendorRepo.findFirstByOrderByCreatedDesc());
@@ -82,7 +88,7 @@ public class VendorServiceImpl implements VendorService {
                 vendorThreadList.removeLast();
 
                 noOfVendors--;
-                VendorRunner.reduceId();
+                VendorRunner.reduceId();  //Reducing priority customer id in runnable class
                 logger.info("Vendor {} Removed", vendorId);
             }
             else {
@@ -97,34 +103,39 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     public void startVendors(){
+        //Iterating through thread lists and starting each thread
         for (Thread thread : vendorThreadList) {
             thread.start();
         }
+
         logger.info("Vendors started");
     }
 
     @Override
     public void stopVendors(){
+        //Changing static variable 'paused' in Runnable class to true
         VendorRunner.stop();
         logger.info("Vendors stopped");
     }
 
     @Override
     public void resumeVendors(){
+        //Changing static variable 'paused' in Runnable class to false
         VendorRunner.resume();
     }
 
     @Override
     public void resetVendors(){
+        //Checking if vendor lists are not empty
         if (!vendorObjectList.isEmpty() && !vendorThreadList.isEmpty()){
             for (Thread thread : vendorThreadList) {
-                thread.interrupt();
+                thread.interrupt(); //Iterating and stopping all threads
             }
-            //Collections.fill(vendorObjectList, null);
+            //Clearing both object and thread lists
             vendorObjectList.clear();
             vendorThreadList.clear();
         }
-        VendorRunner.resume();
+        VendorRunner.resume(); //Changing 'pause' variable to false
         noOfVendors = 0;
         VendorRunner.resetVendorIds();
         logger.info("Vendors reset");
