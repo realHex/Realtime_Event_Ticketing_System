@@ -14,19 +14,23 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 
+/**
+ * Service implementation for managing customers in the real-time ticketing system.
+ * Handles creation, removal, and lifecycle operations for normal and priority customers.
+ */
 @Service
 public class CustomerServiceImpl implements CustomerService {
     private static final Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
 
-    //Arrays to store normal customer objects and threads
+    // Arrays to store normal customer objects and threads
     private final ArrayList<Thread> customerThreadList = new ArrayList<>();
     private final ArrayList<CustomerRunner> customerObjectList = new ArrayList<>();
 
-    //Arrays to store priority customer objects and threads
+    // Arrays to store priority customer objects and threads
     private final ArrayList<Thread> priorityCustomerThreadList = new ArrayList<>();
     private final ArrayList<CustomerRunner> priorityCustomerObjectList = new ArrayList<>();
 
-    //Storing number of customers
+    // Storing number of customers
     private int noOfCustomers = 0;
     private int noOfPriorityCustomers = 0;
 
@@ -39,15 +43,22 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private TicketPool ticketPool;
 
+    /**
+     * Creates a new customer with the given priority status.
+     * Adds the customer to the database, initializes a thread, and starts the thread
+     * if the system is already running or paused.
+     *
+     * @param priority Whether the customer is a priority customer.
+     */
     @Override
     public void createCustomer(boolean priority) {
-        //Checking if a configuration is loaded before adding customers
+        // Checking if a configuration is loaded before adding customers
         if (!isConfigurationLoaded()) {
             logger.warn("Load a Configuration before adding customers");
             return;
         }
 
-        //Add customer details to the database
+        // Add customer details to the database
         Customer customer = new Customer(
                 configuration.getCustomerRetrievalRate(),
                 1,
@@ -57,8 +68,7 @@ public class CustomerServiceImpl implements CustomerService {
         );
         customerRepo.save(customer);
 
-
-        //Create customer object (for making the thread)
+        // Create customer object (for making the thread)
         CustomerRunner customerObject = new CustomerRunner(
                 configuration.getCustomerRetrievalRate(),
                 1,
@@ -66,30 +76,30 @@ public class CustomerServiceImpl implements CustomerService {
                 ticketPool
         );
 
-        //Adding to list depending on priority
+        // Adding to list depending on priority
         if (priority) {
             priorityCustomerObjectList.add(customerObject);
         } else {
             customerObjectList.add(customerObject);
         }
 
-        //Creating customer threads and storing it for accessing
+        // Creating customer threads and storing it for accessing
         Thread customerThread = new Thread(customerObject);
 
-        //Setting thread priority to 10 if priority customer
+        // Setting thread priority to 10 if priority customer
         if (priority) {
             customerThread.setPriority(Thread.MAX_PRIORITY);
             priorityCustomerThreadList.add(customerThread);
-        } else { //Normally it's 5
+        } else { // Normally it's 5
             customerThreadList.add(customerThread);
         }
 
-        //Starting the created thread if the system is already running/paused
-        if (SystemState.getState()==SystemState.RUNNING || SystemState.getState()==SystemState.PAUSED) {
+        // Starting the created thread if the system is already running/paused
+        if (SystemState.getState() == SystemState.RUNNING || SystemState.getState() == SystemState.PAUSED) {
             customerThread.start();
         }
 
-        //Displaying relevant logs depending on customer type
+        // Displaying relevant logs depending on customer type
         if (priority) {
             noOfPriorityCustomers++;
             logger.info("[Priority] Customer {} created successfully", customerObject.getPriorityCustomerId());
@@ -99,45 +109,51 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    /**
+     * Removes a customer based on their priority status.
+     * Stops their thread, removes them from the database, and updates the system state.
+     *
+     * @param priority Whether the customer to be removed is a priority customer.
+     */
     @Override
     public void removeCustomer(boolean priority) {
-        //Checking customer type and if there actually are customers
+        // Checking customer type and if there actually are customers
         if (priority && !priorityCustomerObjectList.isEmpty() && !priorityCustomerThreadList.isEmpty()) {
             try {
-                //Getting id to display it in logs
+                // Getting id to display it in logs
                 int priorityCustomerId = priorityCustomerObjectList.getLast().getPriorityCustomerId();
 
-                //Deleting customer from the database
+                // Deleting customer from the database
                 customerRepo.delete(customerRepo.findFirstByPriorityTrueOrderByCreatedDesc());
 
-                //Delete priority customer object and thread
+                // Delete priority customer object and thread
                 priorityCustomerThreadList.getLast().interrupt();
                 priorityCustomerObjectList.removeLast();
                 priorityCustomerThreadList.removeLast();
 
                 noOfPriorityCustomers--;
-                CustomerRunner.reducePriorityId();  //Reducing priority customer id in runnable class
+                CustomerRunner.reducePriorityId(); // Reducing priority customer id in runnable class
                 logger.info("[Priority] Customer {} Removed", priorityCustomerId);
             } catch (NullPointerException e) {
                 logger.error("No records for priority customer", e);
             }
         }
-        //Checking customer type and if there actually are customers
+        // Checking customer type and if there actually are customers
         if (!priority && !customerObjectList.isEmpty() && !customerThreadList.isEmpty()) {
             try {
-                //Getting id to display it in logs
+                // Getting id to display it in logs
                 int customerId = customerObjectList.getLast().getCustomerId();
 
-                //Deleting customer from the database
+                // Deleting customer from the database
                 customerRepo.delete(customerRepo.findFirstByPriorityFalseOrderByCreatedDesc());
 
-                //Delete customer object and thread
+                // Delete customer object and thread
                 customerThreadList.getLast().interrupt();
                 customerObjectList.removeLast();
                 customerThreadList.removeLast();
 
                 noOfCustomers--;
-                CustomerRunner.reduceId(); //Reducing customer id in runnable class
+                CustomerRunner.reduceId(); // Reducing customer id in runnable class
                 logger.info("Customer {} Removed", customerId);
 
             } catch (NullPointerException e) {
@@ -146,9 +162,12 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    /**
+     * Starts all customer threads, including normal and priority customers.
+     */
     @Override
     public void startCustomers() {
-        //Iterating through thread lists and starting each thread
+        // Iterating through thread lists and starting each thread
         for (Thread thread : priorityCustomerThreadList) {
             thread.start();
         }
@@ -158,56 +177,81 @@ public class CustomerServiceImpl implements CustomerService {
         logger.info("Customers started");
     }
 
+    /**
+     * Stops all customer threads by pausing their execution.
+     */
     @Override
     public void stopCustomers() {
-        //Changing static variable 'paused' in Runnable class to true
+        // Changing static variable 'paused' in Runnable class to true
         CustomerRunner.stop();
         logger.info("Customers stopped");
     }
 
+    /**
+     * Resumes execution of all paused customer threads.
+     */
     @Override
-    public void resumeCustomers(){
-        //Changing static variable 'paused' in Runnable class to false
+    public void resumeCustomers() {
+        // Changing static variable 'paused' in Runnable class to false
         CustomerRunner.resume();
     }
 
+    /**
+     * Resets all customer threads and clears all customer data.
+     * Stops all threads, clears the lists, and resets customer IDs.
+     */
     @Override
     public void resetCustomers() {
-        //Checking if customer lists are not empty
+        // Checking if customer lists are not empty
         if (!customerObjectList.isEmpty() && !customerThreadList.isEmpty()) {
             for (Thread thread : customerThreadList) {
-                thread.interrupt(); //Iterating and stopping all threads
+                thread.interrupt(); // Iterating and stopping all threads
             }
-            //Clearing both object and thread lists
+            // Clearing both object and thread lists
             customerObjectList.clear();
             customerThreadList.clear();
         }
-        //Checking if priority customer lists are not empty
+        // Checking if priority customer lists are not empty
         if (!priorityCustomerObjectList.isEmpty() && !priorityCustomerThreadList.isEmpty()) {
             for (Thread thread : priorityCustomerThreadList) {
-                thread.interrupt(); //Iterating and stopping all threads
+                thread.interrupt(); // Iterating and stopping all threads
             }
-            //Clearing both object and thread lists
+            // Clearing both object and thread lists
             priorityCustomerObjectList.clear();
             priorityCustomerThreadList.clear();
         }
-        CustomerRunner.resume(); //Changing 'pause' variable to false
+        CustomerRunner.resume(); // Changing 'pause' variable to false
         CustomerRunner.resetCustomerIds();
         noOfCustomers = 0;
         noOfPriorityCustomers = 0;
         logger.info("Customers reset");
     }
 
+    /**
+     * Retrieves the number of normal customers in the system.
+     *
+     * @return The number of normal customers.
+     */
     @Override
-    public int getCustomers(){
+    public int getCustomers() {
         return noOfCustomers;
     }
 
+    /**
+     * Retrieves the number of priority customers in the system.
+     *
+     * @return The number of priority customers.
+     */
     @Override
-    public int getPriorityCustomers(){
+    public int getPriorityCustomers() {
         return noOfPriorityCustomers;
     }
 
+    /**
+     * Checks if the configuration is loaded by validating its values.
+     *
+     * @return True if the configuration is loaded, otherwise false.
+     */
     private boolean isConfigurationLoaded() {
         return (configuration.getMaxTicketCapacity() > 0 &&
                 configuration.getTotalTickets() > 0 &&

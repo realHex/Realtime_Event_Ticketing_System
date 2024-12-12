@@ -15,6 +15,11 @@ import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * Manages the ticket pool in a real-time event ticketing system.
+ * Provides functionality for adding and removing tickets while ensuring thread safety using locks and conditions.
+ * It also logs transactions and ensures that the pool's size doesn't exceed the maximum ticket capacity.
+ */
 @Service
 @Data
 public class TicketPool {
@@ -34,16 +39,27 @@ public class TicketPool {
     private int totalAddedTickets = 0;
     private int totalPurchasedTickets = 0;
 
-
+    /**
+     * Initializes the ticket pool with the specified number of tickets and maximum capacity.
+     * Populates the pool with the starting number of tickets.
+     *
+     * @param totalTickets the initial number of tickets in the pool
+     * @param maxTicketCapacity the maximum allowed number of tickets in the pool
+     */
     public void initializeTicketpool(int totalTickets, int maxTicketCapacity) {
         this.totalTickets = totalTickets;
         this.maxTicketCapacity = maxTicketCapacity;
 
+        //Populates the ticketpool with the starting amount of total tickets
         for (int i = 1; i<=totalTickets; i++) {
             Ticket ticket = new Ticket(1,"G17","Arcane", 2000);
             ticketPool.add(ticket);
         }
     }
+
+    /**
+     * Resets the ticket pool, clearing all tickets and resetting ticket counts and capacities.
+     */
     public void resetTicketpool(){
         ticketPool.clear();
         totalTickets = 0;
@@ -52,11 +68,18 @@ public class TicketPool {
         totalPurchasedTickets = 0;
     }
 
-    public void addTicket (int vendorId, int noOfTickets) {
+    /**
+     * Adds the specified number of tickets to the pool, ensuring the total does not exceed the maximum capacity.
+     * If the capacity is reached, the vendor thread waits until tickets are purchased.
+     *
+     * @param vendorId the unique identifier of the vendor adding tickets
+     * @param noOfTickets the number of tickets to be added to the pool
+     */
+    public void addTicket(int vendorId, int noOfTickets) {
         lock.lock();
         try {
             //Checking if the number of tickets exceeds ticket capacity
-            while(totalTickets + noOfTickets > maxTicketCapacity) {
+            while (totalTickets + noOfTickets > maxTicketCapacity) {
                 logger.info("Vendor {} is waiting for tickets to be purchased." +
                         " Total Tickets : {}", vendorId, totalTickets);
 
@@ -66,7 +89,7 @@ public class TicketPool {
                 ticketsRemoved.await(); //Pausing the thread until there's space
             }
             //Adding tickets to the list
-            for (int i = 1; i<=noOfTickets; i++) {
+            for (int i = 1; i <= noOfTickets; i++) {
                 Ticket ticket = new Ticket(1,"G17","Arcane", 2000);
                 ticketPool.add(ticket);
             }
@@ -82,16 +105,23 @@ public class TicketPool {
                     "added", noOfTickets);
 
             ticketsAdded.signalAll(); //Notifying customer threads
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             logger.error("Vendor {} encountered error while adding ticket", vendorId);
             Thread.currentThread().interrupt();
-        }
-        finally {
+        } finally {
             lock.unlock();
         }
     }
-    public void removeTicket (int customerId, int noOfTickets, boolean priority) {
+
+    /**
+     * Removes the specified number of tickets from the pool when a customer purchases them.
+     * If there are insufficient tickets, the customer thread waits until more tickets are added.
+     *
+     * @param customerId the unique identifier of the customer purchasing tickets
+     * @param noOfTickets the number of tickets to be purchased
+     * @param priority indicates whether the customer is a priority customer
+     */
+    public void removeTicket(int customerId, int noOfTickets, boolean priority) {
         lock.lock();
         try {
             //Checking if there are enough tickets to purchase
@@ -113,7 +143,7 @@ public class TicketPool {
                 ticketsAdded.await(); //Pausing the thread until there's more tickets
             }
             //Removing tickets from the list
-            ticketPool.subList(0,noOfTickets).clear();
+            ticketPool.subList(0, noOfTickets).clear();
 
             totalTickets -= noOfTickets;
             totalPurchasedTickets += noOfTickets;
@@ -138,8 +168,7 @@ public class TicketPool {
             }
 
             ticketsRemoved.signalAll(); //Notifying vendor threads
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             if (priority) {
                 logger.error("[Priority] Customer {} encountered error while purchasing ticket", customerId);
             } else {
@@ -147,10 +176,10 @@ public class TicketPool {
             }
 
             Thread.currentThread().interrupt();
-        }
-        finally {
+        } finally {
             lock.unlock();
         }
     }
 }
+
 

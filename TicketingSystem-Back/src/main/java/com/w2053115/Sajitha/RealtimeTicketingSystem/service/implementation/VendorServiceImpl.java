@@ -14,16 +14,19 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 
+/**
+ * Service implementation for managing vendors in the real-time ticketing system.
+ * Handles creation, removal, and lifecycle operations for vendors.
+ */
 
 @Service
 public class VendorServiceImpl implements VendorService {
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationServiceImpl.class);
 
-    //Arrays to store vendor customer objects and threads
+    // Arrays to store vendor threads and objects
     private final ArrayList<Thread> vendorThreadList = new ArrayList<>();
     private final ArrayList<VendorRunner> vendorObjectList = new ArrayList<>();
-    //Storing number of vendors
-    private int noOfVendors = 0;
+    private int noOfVendors = 0; // Stores the number of vendors
 
     @Autowired
     private VendorRepo vendorRepo;
@@ -34,15 +37,18 @@ public class VendorServiceImpl implements VendorService {
     @Autowired
     Configuration configuration;
 
+    /**
+     * Creates a new vendor by adding vendor details to the database,
+     * creating a vendor runner object, and starting its thread if the system is running or paused.
+     */
     @Override
     public void createVendor() {
-        //Checking if a configuration is loaded before adding customers
         if (!isConfigurationLoaded()) {
             logger.warn("Load a Configuration before adding vendors");
             return;
         }
 
-        //Add vendor details to the database
+        // Add vendor details to the database
         Vendor vendor = new Vendor(
                 configuration.getTicketReleaseRate(),
                 1,
@@ -51,7 +57,7 @@ public class VendorServiceImpl implements VendorService {
         );
         vendorRepo.save(vendor);
 
-        //Create vendor object (for making the thread)
+        // Create a VendorRunner object and corresponding thread
         VendorRunner vendorObject = new VendorRunner(
                 configuration.getTicketReleaseRate(),
                 1,
@@ -59,98 +65,112 @@ public class VendorServiceImpl implements VendorService {
         );
         vendorObjectList.add(vendorObject);
 
-        //Creating vendor threads and storing it for accessing
         Thread vendorThread = new Thread(vendorObject);
         vendorThreadList.add(vendorThread);
 
-        //Starting the created thread if the system is already running/paused
-        if (SystemState.getState()==SystemState.RUNNING || SystemState.getState()==SystemState.PAUSED) {
+        // Start the thread if the system state is RUNNING or PAUSED
+        if (SystemState.getState() == SystemState.RUNNING || SystemState.getState() == SystemState.PAUSED) {
             vendorThread.start();
         }
         noOfVendors++;
         logger.info("Vendor {} created successfully", vendorObject.getVendorId());
-
     }
 
+    /**
+     * Removes the most recently added vendor by interrupting its thread,
+     * removing its corresponding object, and deleting its record from the database.
+     */
     @Override
-    public void removeVendor(){
+    public void removeVendor() {
         try {
-            //Checking vendor type and if there actually are customers
             if (!vendorObjectList.isEmpty() && !vendorThreadList.isEmpty()) {
-                //Getting id to display it in logs
-                int vendorId = vendorObjectList.getLast().getVendorId();
+                int vendorId = vendorObjectList.get(vendorObjectList.size() - 1).getVendorId();
 
                 vendorRepo.delete(vendorRepo.findFirstByOrderByCreatedDesc());
 
-                //Delete vendor object and thread
-                vendorThreadList.getLast().interrupt();
-                vendorObjectList.removeLast();
-                vendorThreadList.removeLast();
+                // Remove vendor thread and object
+                vendorThreadList.get(vendorThreadList.size() - 1).interrupt();
+                vendorObjectList.remove(vendorObjectList.size() - 1);
+                vendorThreadList.remove(vendorThreadList.size() - 1);
 
                 noOfVendors--;
-                VendorRunner.reduceId();  //Reducing priority customer id in runnable class
+                VendorRunner.reduceId();
                 logger.info("Vendor {} Removed", vendorId);
-            }
-            else {
+            } else {
                 logger.warn("There's no vendors added");
             }
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             logger.error("No records for vendor");
             throw e;
         }
     }
 
+    /**
+     * Starts all vendor threads by iterating through the thread list and starting each thread.
+     */
     @Override
-    public void startVendors(){
-        //Iterating through thread lists and starting each thread
+    public void startVendors() {
         for (Thread thread : vendorThreadList) {
             thread.start();
         }
-
         logger.info("Vendors started");
     }
 
+    /**
+     * Stops all vendor threads by changing the `paused` flag in the VendorRunner class to true.
+     */
     @Override
-    public void stopVendors(){
-        //Changing static variable 'paused' in Runnable class to true
+    public void stopVendors() {
         VendorRunner.stop();
         logger.info("Vendors stopped");
     }
 
+    /**
+     * Resumes all vendor threads by changing the `paused` flag in the VendorRunner class to false.
+     */
     @Override
-    public void resumeVendors(){
-        //Changing static variable 'paused' in Runnable class to false
+    public void resumeVendors() {
         VendorRunner.resume();
     }
 
+    /**
+     * Resets all vendors by interrupting their threads, clearing the thread and object lists,
+     * and resetting the vendor IDs to their initial state.
+     */
     @Override
-    public void resetVendors(){
-        //Checking if vendor lists are not empty
-        if (!vendorObjectList.isEmpty() && !vendorThreadList.isEmpty()){
+    public void resetVendors() {
+        if (!vendorObjectList.isEmpty() && !vendorThreadList.isEmpty()) {
             for (Thread thread : vendorThreadList) {
-                thread.interrupt(); //Iterating and stopping all threads
+                thread.interrupt(); // Stop all threads
             }
-            //Clearing both object and thread lists
-            vendorObjectList.clear();
-            vendorThreadList.clear();
+            vendorObjectList.clear(); // Clear the vendor object list
+            vendorThreadList.clear(); // Clear the vendor thread list
         }
-        VendorRunner.resume(); //Changing 'pause' variable to false
+        VendorRunner.resume(); // Reset the paused state
         noOfVendors = 0;
-        VendorRunner.resetVendorIds();
+        VendorRunner.resetVendorIds(); // Reset vendor IDs
         logger.info("Vendors reset");
     }
 
+    /**
+     * Returns the total number of vendors currently in the system.
+     *
+     * @return The number of vendors.
+     */
     @Override
     public int getVendors() {
         return noOfVendors;
     }
 
+    /**
+     * Checks if a configuration is loaded by verifying that all necessary configuration parameters are greater than zero.
+     *
+     * @return True if the configuration is loaded, false otherwise.
+     */
     private boolean isConfigurationLoaded() {
         return (configuration.getMaxTicketCapacity() > 0 &&
                 configuration.getTotalTickets() > 0 &&
                 configuration.getTicketReleaseRate() > 0 &&
                 configuration.getCustomerRetrievalRate() > 0);
     }
-
 }

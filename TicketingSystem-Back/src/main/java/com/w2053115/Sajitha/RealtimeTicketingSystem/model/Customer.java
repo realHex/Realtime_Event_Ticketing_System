@@ -8,6 +8,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a customer in the ticketing system.
+ * Contains customer details such as tickets per retrieval, release interval, contact information, and priority status.
+ * Stores the creation timestamp for the customer instance.
+ */
 @Document
 @Data
 @AllArgsConstructor
@@ -23,6 +28,17 @@ public class Customer {
     private boolean priority;
     private LocalDateTime created;
 
+    /**
+     * Constructs a new Customer with specified ticket retrieval and release details,
+     * along with name, contact number, and priority status.
+     * Sets the creation timestamp to the current time.
+     *
+     * @param ticketsPerRetrieval the number of tickets the customer retrieves at a time
+     * @param releaseInterval the interval between ticket retrievals in seconds
+     * @param name the name of the customer
+     * @param contactNo the contact number of the customer
+     * @param priority indicates whether the customer has priority status
+     */
     public Customer(int ticketsPerRetrieval, int releaseInterval, String name, String contactNo, boolean priority) {
         this.ticketsPerRetrieval = ticketsPerRetrieval;
         this.releaseInterval = releaseInterval;
