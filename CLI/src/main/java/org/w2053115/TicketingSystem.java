@@ -11,7 +11,13 @@ import org.w2053115.Setups.SharedTicketPool.TicketPool;
 import org.w2053115.Setups.Users.Customer;
 import org.w2053115.Setups.Users.Vendor;
 
-
+/**
+ * A realtime ticketing system simulation that manages vendors and customers
+ * interacting with a shared ticket pool. This application allows dynamic
+ * configuration, creation of vendors and customers, and simulation management.
+ *
+ * @author Sajitha Fonseka
+ */
 public class TicketingSystem {
 
     private static boolean running = false; //Indicating if the system is running
@@ -21,9 +27,11 @@ public class TicketingSystem {
     private static final ArrayList<Thread> customerThreadList = new ArrayList<Thread>();
     private static final Logger logger = LogManager.getLogger(TicketingSystem.class);
 
-
-
-
+    /**
+     * Main method to run the Realtime Ticketing System Simulation.
+     * Handles configuration, ticket pool initialization,
+     * and user interaction for starting and resetting the simulation.
+     */
     public static void main(String[] args) {
 
         int noOfVendors;
@@ -61,8 +69,12 @@ public class TicketingSystem {
         }
     }
 
-
-    //Setting up the 4 main parameters
+    /**
+     * Sets up the configuration parameters for the ticketing system.
+     * Allows loading a previous configuration or creating a new one.
+     *
+     * @return Configuration object with system parameters
+     */
     public static Configuration setConfiguration(){
         Configuration parameters = new Configuration();  //Making a configuration object
         Scanner scanner = new Scanner(System.in);
@@ -77,7 +89,7 @@ public class TicketingSystem {
                     logger.info("Previous configuration loaded. {}", parameters.toString());
                     return parameters;
 
-                //Asking user for parameters if there's no json file to load from
+                    //Asking user for parameters if there's no json file to load from
                 } else {
                     System.out.println("No configuration to load from");
                     parameters.initiateParameters();
@@ -85,7 +97,7 @@ public class TicketingSystem {
                     logger.info("New configuration saved. {}", parameters.toString());
                     return parameters;
                 }
-            //Asking user for parameters if the user doesn't want to load from json file
+                //Asking user for parameters if the user doesn't want to load from json file
             } else if (option.equals("n")) {
                 parameters.initiateParameters();
                 ConfigurationUtility.saveConfiguration(parameters);
@@ -97,7 +109,13 @@ public class TicketingSystem {
         }
     }
 
-    //Creating vendor objects and threads
+    /**
+     * Creates vendor objects and corresponding threads for the simulation.
+     *
+     * @param noOfVendors Number of vendors to create
+     * @param ticketPool Shared ticket pool for vendors to interact with
+     * @param ticketsPerRelease Number of tickets each vendor can release per iteration
+     */
     public static void createVendors(int noOfVendors, TicketPool ticketPool, int ticketsPerRelease) {
         //Creating vendor objects for the amount of vendors
         for (int i = 0; i < noOfVendors; i++) {
@@ -110,7 +128,14 @@ public class TicketingSystem {
         System.out.println("Vendors created");;
     }
 
-    //Creating customer objects and threads
+    /**
+     * Creates customer objects and corresponding threads for the simulation.
+     *
+     * @param noOfCustomers Number of customers to create
+     * @param ticketPool Shared ticket pool for customers to interact with
+     * @param ticketsPerRelease Number of tickets each customer can retrieve per iteration
+     * @param priority Priority level for customer threads
+     */
     public static void createCustomers(int noOfCustomers, TicketPool ticketPool, int ticketsPerRelease, int priority) {
         //Creating customer objects for the amount of customers
         for (int i = 0; i < noOfCustomers; i++) {
@@ -123,7 +148,12 @@ public class TicketingSystem {
         System.out.println("Customers created");;
     }
 
-    //Starting vendor and customer threads
+    /**
+     * Starts all threads for a given list of threads (either vendors or customers).
+     *
+     * @param userName Name of the thread type (for logging and display purposes)
+     * @param listOfThreads List of threads to be started
+     */
     public static void startThreads(String userName, ArrayList<Thread> listOfThreads) {
         //Starting each thread in the array
         for (Thread thread : listOfThreads) {
@@ -134,7 +164,10 @@ public class TicketingSystem {
 
     }
 
-    //Prompting user to start or reset the application
+    /**
+     * Handles the application start and reset logic.
+     * Allows user to start the simulation or reset the system.
+     */
     public static void startApplication(){
         Scanner scanner = new Scanner(System.in);
 
@@ -177,7 +210,7 @@ public class TicketingSystem {
                 } catch (InterruptedException e) {
                     logger.error("Main thread interrupted while sleeping", e);
                 }
-            //Resetting vendors and customers
+                //Resetting vendors and customers
             } else if (option.equals("r")) {
                 resetVendors();
                 resetCustomers();
@@ -189,7 +222,9 @@ public class TicketingSystem {
         }
     }
 
-    //Stopping all threads
+    /**
+     * Stops all running vendor and customer threads.
+     */
     public static void stopApplication(){
         //Interrupting all running threads
         Vendor.setRunningFalse();
@@ -203,7 +238,10 @@ public class TicketingSystem {
         }
     }
 
-    //Clearing all vendor lists
+    /**
+     * Resets all vendor-related objects and threads.
+     * Clears vendor lists and resets vendor numbering.
+     */
     public static void resetVendors(){
         vendorObjectList.clear();
         vendorThreadList.clear();
@@ -212,7 +250,10 @@ public class TicketingSystem {
         System.out.println("Vendors reset");
     }
 
-    //Clearing all customers lists
+    /**
+     * Resets all customer-related objects and threads.
+     * Clears customer lists and resets customer numbering.
+     */
     public static void resetCustomers(){
         customerObjectList.clear();
         customerThreadList.clear();
@@ -222,4 +263,3 @@ public class TicketingSystem {
     }
 
 }
-

@@ -443,3 +443,79 @@
 2024-12-09 21:06:57 [INFO] Vendor 1 has been stopped
 2024-12-09 21:06:57 [INFO] Customer 1 has been stopped
 2024-12-09 21:06:58 [INFO] Application stopped
+2024-12-12 05:54:23 [INFO] Previous configuration loaded. [Total tickets : 50, Ticket Release Rate : 20, Customer Purchase Rate : 4, Max Ticket Capacity : 100]
+2024-12-12 05:54:29 [INFO] Application starting...
+2024-12-12 05:54:33 [INFO] Vendor 1 added 20 tickets. Total Tickets : 70
+2024-12-12 05:54:33 [INFO] Vendor 2 added 20 tickets. Total Tickets : 90
+2024-12-12 05:54:33 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 90
+2024-12-12 05:54:33 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 86
+2024-12-12 05:54:33 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 82
+2024-12-12 05:54:33 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 78
+2024-12-12 05:54:33 [INFO] Vendor 3 added 20 tickets. Total Tickets : 98
+2024-12-12 05:54:34 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 98
+2024-12-12 05:54:34 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 98
+2024-12-12 05:54:34 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 94
+2024-12-12 05:54:34 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 94
+2024-12-12 05:54:34 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 94
+2024-12-12 05:54:34 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 94
+2024-12-12 05:54:34 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 90
+2024-12-12 05:54:34 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 86
+2024-12-12 05:54:34 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 86
+2024-12-12 05:54:34 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 86
+2024-12-12 05:54:34 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 86
+2024-12-12 05:54:35 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 82
+2024-12-12 05:54:35 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 78
+2024-12-12 05:54:35 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 74
+2024-12-12 05:54:35 [INFO] Vendor 1 added 20 tickets. Total Tickets : 94
+2024-12-12 05:54:35 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 94
+2024-12-12 05:54:35 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 94
+2024-12-12 05:54:36 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 90
+2024-12-12 05:54:36 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 86
+2024-12-12 05:54:36 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 82
+2024-12-12 05:54:36 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 82
+2024-12-12 05:54:36 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 82
+2024-12-12 05:54:36 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 82
+2024-12-12 05:54:37 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 78
+2024-12-12 05:54:37 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 74
+2024-12-12 05:54:37 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 70
+2024-12-12 05:54:37 [INFO] Vendor 1 added 20 tickets. Total Tickets : 90
+2024-12-12 05:54:37 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 90
+2024-12-12 05:54:37 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 90
+2024-12-12 05:54:38 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 90
+2024-12-12 05:54:38 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 86
+2024-12-12 05:54:38 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 82
+2024-12-12 05:54:38 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 78
+2024-12-12 05:54:38 [INFO] Vendor 2 added 20 tickets. Total Tickets : 98
+2024-12-12 05:54:38 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 98
+2024-12-12 05:54:38 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 98
+2024-12-12 05:54:39 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 94
+2024-12-12 05:54:39 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 90
+2024-12-12 05:54:39 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 90
+2024-12-12 05:54:39 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 90
+2024-12-12 05:54:39 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 86
+2024-12-12 05:54:39 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 86
+2024-12-12 05:54:39 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 86
+2024-12-12 05:54:39 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 86
+2024-12-12 05:54:40 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 82
+2024-12-12 05:54:40 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 78
+2024-12-12 05:54:40 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 74
+2024-12-12 05:54:40 [INFO] Vendor 2 added 20 tickets. Total Tickets : 94
+2024-12-12 05:54:40 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 94
+2024-12-12 05:54:40 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 94
+2024-12-12 05:54:41 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 94
+2024-12-12 05:54:41 [INFO] Customer 2 purchased 4 tickets. Total Tickets : 90
+2024-12-12 05:54:41 [INFO] Customer 1 purchased 4 tickets. Total Tickets : 86
+2024-12-12 05:54:41 [INFO] Customer 3 purchased 4 tickets. Total Tickets : 82
+2024-12-12 05:54:41 [INFO] Vendor 3 is waiting for tickets to be purchased. Total Tickets : 82
+2024-12-12 05:54:41 [INFO] Vendor 1 is waiting for tickets to be purchased. Total Tickets : 82
+2024-12-12 05:54:41 [INFO] Vendor 2 is waiting for tickets to be purchased. Total Tickets : 82
+2024-12-12 05:54:42 [INFO] Customer 3 has been stopped
+2024-12-12 05:54:42 [INFO] Customer 1 has been stopped
+2024-12-12 05:54:42 [INFO] Customer 2 has been stopped
+2024-12-12 05:54:42 [ERROR] Vendor 1 encountered error while adding ticket
+2024-12-12 05:54:42 [ERROR] Vendor 2 encountered error while adding ticket
+2024-12-12 05:54:42 [INFO] Vendor 1 has been stopped
+2024-12-12 05:54:42 [ERROR] Vendor 3 encountered error while adding ticket
+2024-12-12 05:54:42 [INFO] Vendor 2 has been stopped
+2024-12-12 05:54:42 [INFO] Vendor 3 has been stopped
+2024-12-12 05:54:43 [INFO] Application stopped

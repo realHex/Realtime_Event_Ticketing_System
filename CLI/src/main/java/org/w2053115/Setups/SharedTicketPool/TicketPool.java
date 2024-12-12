@@ -8,6 +8,13 @@ import java.util.*;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * A thread-safe ticket pool implementation that manages ticket distribution
+ * between vendors and customers using concurrent access controls.
+ *
+ * This class provides synchronized methods for adding and removing tickets
+ * with capacity management and thread coordination using ReentrantLock and Conditions.
+ */
 public class TicketPool implements TicketPoolOperations{
     private final List<Ticket> ticketPool  = Collections.synchronizedList(new ArrayList<>());
     private final ReentrantLock lock = new ReentrantLock();
@@ -18,13 +25,25 @@ public class TicketPool implements TicketPoolOperations{
 
     private static final Logger logger = LogManager.getLogger(TicketPool.class);
 
+    /**
+     * Constructs a TicketPool with a specified number of initial tickets and maximum capacity.
+     *
+     * @param totalTickets Initial number of tickets to populate the pool
+     * @param maxTicketCapacity Maximum number of tickets that can be in the pool at any time
+     */
     public TicketPool(int totalTickets, int maxTicketCapacity){
         this.totalTickets = totalTickets;
         this.maxTicketCapacity = maxTicketCapacity;
         ticketPoolPopulator();
     }
 
-    //Adding tickets to the ticketpool before the threads start
+    /**
+     * Populates the ticket pool with an initial set of tickets.
+     *
+     * Creates default movie tickets for the initial ticket count specified during
+     * the TicketPool construction. Each ticket is created with a unique ID,
+     * fixed movie name, and standard price.
+     */
     @Override
     public void ticketPoolPopulator() {
         for (int i = 1; i <= this.totalTickets; i++) {
@@ -33,6 +52,16 @@ public class TicketPool implements TicketPoolOperations{
         }
     }
 
+    /**
+     * Adds tickets to the pool from a vendor, with thread-safe capacity management.
+     *
+     * This method ensures that the total number of tickets does not exceed
+     * the maximum ticket capacity. If the capacity would be exceeded, the
+     * vendor thread waits until some tickets are removed.
+     *
+     * @param vendorId Identifier for the vendor adding tickets
+     * @param noOfTickets Number of tickets the vendor wants to add
+     */
     @Override
     public void addTicket(int vendorId, int noOfTickets) {
         lock.lock();
@@ -64,6 +93,15 @@ public class TicketPool implements TicketPoolOperations{
         }
     }
 
+    /**
+     * Removes tickets from the pool for a customer, with thread-safe availability management.
+     *
+     * This method ensures that enough tickets are available for purchase. If not,
+     * the customer thread waits until more tickets are added to the pool.
+     *
+     * @param customerId Identifier for the customer purchasing tickets
+     * @param noOfTickets Number of tickets the customer wants to purchase
+     */
     @Override
     public void removeTicket(int customerId, int noOfTickets) {
         lock.lock();
