@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { Button } from 'primeng/button';
 import { NgClass, NgStyle } from '@angular/common';
-import { IVendorAutomated } from '../../model/class/vendor-automated';
+import { IVendorValues } from '../../model/class/vendor-values';
 
 @Component({
   selector: 'app-vendor-automated-ticketing',
@@ -19,7 +19,7 @@ import { IVendorAutomated } from '../../model/class/vendor-automated';
   styleUrl: './vendor-automated-ticketing.component.css'
 })
 export class VendorAutomatedTicketingComponent {
-  formData: IVendorAutomated = {
+  formData: IVendorValues = {
     ticketAmount: 0,
     ticketReleaseRate: 0
   };
