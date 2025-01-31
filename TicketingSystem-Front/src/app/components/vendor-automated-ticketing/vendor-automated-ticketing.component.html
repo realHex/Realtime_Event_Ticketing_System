@@ -29,37 +29,73 @@
       style="color: #666; font-size: 0.6rem; text-align: left;">
       {{ validateTicketAmount() }}
     </small>
-  </div>
 
-  <div style="display: flex; flex-direction: column; gap: 0.15rem; width: 100%; font-size: 0.7rem;">
-    <label for="release-rate" style="font-weight: bold; font-size: 0.7rem; text-align: left;">Ticket Release Rate</label>
+    <!-- Add Ticket Release Rate -->
+    <label for="ticket-release-rate" style="font-weight: bold; font-size: 0.7rem; text-align: left; margin-top: 0.5rem;">Ticket Release Rate</label>
     <input
       pInputText
-      id="release-rate"
+      id="ticket-release-rate"
       type="number"
       [(ngModel)]="formData.ticketReleaseRate"
-      (ngModelChange)="validateTicketReleaseRate()"
       [ngClass]="{'p-invalid': formData.ticketReleaseRate <= 0}"
-      aria-describedby="release-rate-text"
+      aria-describedby="ticket-release-rate-text"
       style="width: 100%;"
     />
     <small
-      id="release-rate-text"
+      id="ticket-release-rate-text"
       [ngStyle]="{'color': formData.ticketReleaseRate <= 0 ? 'red' : 'inherit'}"
       style="color: #666; font-size: 0.6rem; text-align: left;">
       {{ validateTicketReleaseRate() }}
     </small>
-  </div>
 
-  <div style="display: flex; justify-content: center; align-items: center; margin-top: 1rem;">
-    <p-button
-      (click)="onSubmit()"
-      styleClass="p-button"
-      severity="success"
-      [rounded]="true"
-      size="small"
-      [disabled]="!validateForm()">
-      <label style="font-weight: bold; font-size: 0.6rem;">Start Adding</label>
-    </p-button>
+    <div style="display: flex; align-items: center; margin-top: 0.5rem;">
+      <p-checkbox
+        [(ngModel)]="formData.hasTicketLimit"
+        [binary]="true"
+        inputId="ticketLimit"
+        (onChange)="showTicketLimitInput()">
+      </p-checkbox>
+      <label for="ticketLimit" style="margin-left: 0.5rem; font-size: 0.7rem;">Enable Ticket Limit</label>
+    </div>
+    
+    <!-- Conditional Ticket Limit Input -->
+    <div [hidden]="!formData.hasTicketLimit" style="margin-top: 1rem;">
+      <label for="ticket-limit" style="font-weight: bold; font-size: 0.7rem; text-align: left;">Ticket Limit</label>
+      <input
+        pInputText
+        id="ticket-limit"
+        type="number"
+        [(ngModel)]="formData.ticketLimit"
+        style="width: 100%;"
+      />
+    </div>
+
+    <small [hidden]="!formData.hasTicketLimit"
+    id="ticket-release-rate-text"
+    [ngStyle]="{'color': formData.hasTicketLimit && formData.ticketLimit <= 0  ? 'red' : 'inherit'}"
+    style="color: #666; font-size: 0.6rem; text-align: left;">
+    </small>
+
+    <!-- Buttons Container -->
+    <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin-top: 1rem;">
+      <p-button
+        (click)="onStartAdding()"
+        styleClass="p-button"
+        severity="success"
+        [rounded]="true"
+        size="small"
+        [disabled]="!validateForm() || isAddingTickets">
+        <label style="font-weight: bold; font-size: 0.6rem;">Start Adding</label>
+      </p-button>
+      <p-button
+        (click)="onStopAdding()"
+        styleClass="p-button"
+        severity="danger"
+        [rounded]="true"
+        size="small"
+        [disabled]="!validateForm() || !isAddingTickets">
+        <label style="font-weight: bold; font-size: 0.6rem;">Stop Adding</label>
+      </p-button>
+    </div>
   </div>
 </div>
