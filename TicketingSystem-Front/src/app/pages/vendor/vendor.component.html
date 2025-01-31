@@ -1,6 +1,18 @@
 <app-vendor-topbar></app-vendor-topbar>
 
-<div style="display: flex;">
-  <app-vendor-automated-ticketing></app-vendor-automated-ticketing>
+<div style="
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+
+  width: 100%;
+  margin: 0 auto;
+">
+  <div style="margin-top:3px">
+    <app-vendor-automated-ticketing></app-vendor-automated-ticketing>
+  </div>
+
+  <div style="padding: 20px;">
   <app-vendor-manual-ticketing></app-vendor-manual-ticketing>
+  </div>
+
 </div>

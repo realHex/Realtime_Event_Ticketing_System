@@ -1,1 +1,45 @@
-<p>vendor-manual-ticketing works!</p>
+<div class="card" style="
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 40rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);">
+
+  <h4 style="margin: 5px; padding: 2px; line-height: 1.2rem; text-align:center;">Manual Ticket Addition</h4>
+
+  <div style="display: flex; flex-direction: column; gap: 0.15rem; width: 100%; font-size: 0.7rem;">
+    <label for="ticket-amount" style="font-weight: bold; font-size: 0.7rem; text-align: left;">Amount of Tickets</label>
+    <input
+      pInputText
+      id="ticket-amount"
+      type="number"
+      [(ngModel)]="formData.ticketAmount"
+      (ngModelChange)="validateTicketAmount()"
+      [ngClass]="{'p-invalid': formData.ticketAmount <= 0}"
+      aria-describedby="ticket-amount-text"
+      style="width: 100%;"
+    />
+    <small
+      id="ticket-amount-text"
+      [ngStyle]="{'color': formData.ticketAmount <= 0 ? 'red' : 'inherit'}"
+      style="color: #666; font-size: 0.6rem; text-align: left;">
+      {{ validateTicketAmount() }}
+    </small>
+  </div>
+
+  <div style="display: flex; justify-content: center; align-items: center; margin-top: 1rem;">
+    <p-button
+      (click)="onSubmit()"
+      styleClass="p-button"
+      severity="success"
+      [rounded]="true"
+      size="small"
+      [disabled]="!validateForm()">
+      <label style="font-weight: bold; font-size: 0.6rem;">Start Adding</label>
+    </p-button>
+  </div>
+</div>

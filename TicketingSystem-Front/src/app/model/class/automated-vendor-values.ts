@@ -1,4 +1,4 @@
-export interface IVendorValues {
+export interface IAutomatedVendorValues {
     ticketAmount: number;
     ticketReleaseRate: number;
 }
