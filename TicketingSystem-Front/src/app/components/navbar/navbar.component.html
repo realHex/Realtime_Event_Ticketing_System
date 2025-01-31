@@ -1,18 +1,18 @@
-<nav class="navbar" style="background-color: #f8f9fa; padding: 1rem; margin-bottom: 1rem;">
-  <div style="display: flex; gap: 1rem;">
+<nav class="navbar">
+  <div class="nav-container">
     <a [routerLink]="['/simulation']" 
        [routerLinkActive]="'active'"
-       style="text-decoration: none; color: #333; padding: 0.5rem 1rem; border-radius: 0.25rem;">
+       class="nav-link">
       Simulation
     </a>
     <a [routerLink]="['/vendor']"
        [routerLinkActive]="'active'"
-       style="text-decoration: none; color: #333; padding: 0.5rem 1rem; border-radius: 0.25rem;">
+       class="nav-link">
       Vendor
     </a>
     <a [routerLink]="['/customer']"
        [routerLinkActive]="'active'"
-       style="text-decoration: none; color: #333; padding: 0.5rem 1rem; border-radius: 0.25rem;">
+       class="nav-link">
       Customer
     </a>
   </div>
