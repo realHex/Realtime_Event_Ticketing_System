@@ -1,1 +1,50 @@
-<p>simulation works!</p>
+<app-controls-topbar></app-controls-topbar>
+
+<div style="
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+">
+  <div>
+    <app-add-user></app-add-user>
+    <app-ticket-counts></app-ticket-counts>
+    <app-progress-bar></app-progress-bar>
+  </div>
+
+
+  <div style="
+    padding: 20px;
+  ">
+    <app-configuration-form></app-configuration-form>
+  </div>
+</div>
+
+
+
+
+<div style="
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+">
+  <div >
+  <app-chart></app-chart>
+  </div>
+
+
+  <div style="
+    padding: 1px 20px 20px;
+  ">
+    <app-logs></app-logs>
+  </div>
+</div>
+
+
+
+<router-outlet />
