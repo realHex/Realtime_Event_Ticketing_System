@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-RealtimeTicketingSystemApplication<TicketingSystem-Back>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.w2053115.Sajitha.RealtimeTicketingSystem.RealtimeTicketingSystemApplication",
+            "projectName": "TicketingSystem-Back",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
